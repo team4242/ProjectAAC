@@ -1,0 +1,2 @@
+rootProject.name='ProjectAAC'
+include ':app'
