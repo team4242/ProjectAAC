@@ -16,8 +16,8 @@ public class CpChangeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cp_change);
 
-        btn_symbolmake = (Button)findViewById(R.id.btn_symbolmake);
-        btn_camera= (Button)findViewById(R.id.btn_camera);
+        btn_symbolmake = (Button)findViewById(R.id.btn_favorites);
+        btn_camera= (Button)findViewById(R.id.btn_addfavorites);
         btn_community= (Button)findViewById(R.id.btn_community);
         btn_save= (Button)findViewById(R.id.btn_save);
 
