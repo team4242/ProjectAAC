@@ -62,7 +62,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/image_1"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_weight="1"
@@ -82,7 +82,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/image_14"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_weight="1"
@@ -102,7 +102,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/image_15"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_weight="1"
@@ -121,7 +121,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/image_15"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_weight="1"
@@ -140,7 +140,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/image_15"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_weight="1"
@@ -159,7 +159,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/image_15"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_weight="1"
@@ -178,7 +178,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/image_15"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_weight="1"
@@ -197,7 +197,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/image_16"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_weight="1"
