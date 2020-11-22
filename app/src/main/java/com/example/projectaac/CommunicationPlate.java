@@ -2,7 +2,9 @@ package com.example.projectaac;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +21,7 @@ public class CommunicationPlate extends AppCompatActivity {
     ImageButton btn_home;
     LinearLayout layout_a,layout_b,layout_c,layout_d,layout_1,layout_2,layout_3,layout_4,layout_5,layout_6,layout_7,layout_8,layout_9,layout_10,layout_11,layout_12,layout_13,layout_14,layout_15,layout_16;
     ImageView image_a,image_b,image_c,image_d,image_1,image_2,image_3,image_4,image_5,image_6,image_7,image_8,image_9,image_10,image_11,image_12,image_13,image_14,image_15,image_16;
-    TextView text,texta,textb,textc,textd,text1,text2,text3,text4,text5,text6,text7,text8,text9,text10,text11,text12,text13,text14,text15,text16;
+    TextView texta,textb,textc,textd,text1,text2,text3,text4,text5,text6,text7,text8,text9,text10,text11,text12,text13,text14,text15,text16;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,6 +162,24 @@ public class CommunicationPlate extends AppCompatActivity {
                 }else{
 
                 }
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
             }
         });
 
@@ -192,6 +212,24 @@ public class CommunicationPlate extends AppCompatActivity {
                 }else{
 
                 }
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
             }
         });
 
@@ -213,6 +251,24 @@ public class CommunicationPlate extends AppCompatActivity {
                 }else{
 
                 }
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
             }
         });
 
@@ -224,6 +280,24 @@ public class CommunicationPlate extends AppCompatActivity {
                     textd.setText("");
                     count--;
                 }
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
             }
         });
 
@@ -231,6 +305,7 @@ public class CommunicationPlate extends AppCompatActivity {
         layout_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (count == 0){
                     image_a.setImageResource(R.drawable.an_nyeong_ha_se_yo_002_);
                     texta.setText(text1.getText());
@@ -247,6 +322,27 @@ public class CommunicationPlate extends AppCompatActivity {
                     image_d.setImageResource(R.drawable.an_nyeong_ha_se_yo_002_);
                     textd.setText(text1.getText());
                     count ++;}
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
+                layout_2.setBackgroundColor(Color.RED);
+                layout_6.setBackgroundColor(Color.YELLOW);
+                layout_10.setBackgroundColor(Color.GREEN);
             }
         });
 
@@ -269,6 +365,27 @@ public class CommunicationPlate extends AppCompatActivity {
                     image_d.setImageResource(R.drawable.cin_gu_);
                     textd.setText(text2.getText());
                     count ++;}
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
+                layout_8.setBackgroundColor(Color.RED);
+                layout_4.setBackgroundColor(Color.YELLOW);
+                layout_12.setBackgroundColor(Color.GREEN);
             }
         });
 
@@ -291,6 +408,27 @@ public class CommunicationPlate extends AppCompatActivity {
                     image_d.setImageResource(R.drawable.joh_a_yo_002_);
                     textd.setText(text3.getText());
                     count ++;}
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
+                layout_5.setBackgroundColor(Color.RED);
+                layout_9.setBackgroundColor(Color.YELLOW);
+                layout_1.setBackgroundColor(Color.GREEN);
             }
         });
 
@@ -313,6 +451,27 @@ public class CommunicationPlate extends AppCompatActivity {
                     image_d.setImageResource(R.drawable.silh_eo_yo_);
                     textd.setText(text4.getText());
                     count ++;}
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
+                layout_12.setBackgroundColor(Color.RED);
+                layout_7.setBackgroundColor(Color.YELLOW);
+                layout_15.setBackgroundColor(Color.GREEN);
             }
         });
 
@@ -335,6 +494,27 @@ public class CommunicationPlate extends AppCompatActivity {
                     image_d.setImageResource(R.drawable.gi_bun_joh_a_yo_);
                     textd.setText(text5.getText());
                     count ++;}
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
+                layout_8.setBackgroundColor(Color.RED);
+                layout_3.setBackgroundColor(Color.YELLOW);
+                layout_14.setBackgroundColor(Color.GREEN);
             }
         });
 
@@ -357,6 +537,27 @@ public class CommunicationPlate extends AppCompatActivity {
                     image_d.setImageResource(R.drawable.ju_se_yo_002_);
                     textd.setText(text6.getText());
                     count ++;}
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
+                layout_5.setBackgroundColor(Color.RED);
+                layout_8.setBackgroundColor(Color.YELLOW);
+                layout_4.setBackgroundColor(Color.GREEN);
             }
         });
 
@@ -379,6 +580,27 @@ public class CommunicationPlate extends AppCompatActivity {
                     image_d.setImageResource(R.drawable.mul_002_1);
                     textd.setText(text7.getText());
                     count ++;}
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
+                layout_12.setBackgroundColor(Color.RED);
+                layout_16.setBackgroundColor(Color.YELLOW);
+                layout_4.setBackgroundColor(Color.GREEN);
             }
         });
 
@@ -401,6 +623,27 @@ public class CommunicationPlate extends AppCompatActivity {
                     image_d.setImageResource(R.drawable.u_yu_003_);
                     textd.setText(text8.getText());
                     count ++;}
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
+                layout_3.setBackgroundColor(Color.RED);
+                layout_13.setBackgroundColor(Color.YELLOW);
+                layout_9.setBackgroundColor(Color.GREEN);
             }
         });
 
@@ -423,6 +666,27 @@ public class CommunicationPlate extends AppCompatActivity {
                     image_d.setImageResource(R.drawable.mu_seun_mal_in_ji_jal_mo_reu_gess_eo_yo_);
                     textd.setText(text9.getText());
                     count ++;}
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
+                layout_6.setBackgroundColor(Color.RED);
+                layout_12.setBackgroundColor(Color.YELLOW);
+                layout_5.setBackgroundColor(Color.GREEN);
             }
         });
 
@@ -445,6 +709,27 @@ public class CommunicationPlate extends AppCompatActivity {
                     image_d.setImageResource(R.drawable.geod_da_);
                     textd.setText(text10.getText());
                     count ++;}
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
+                layout_3.setBackgroundColor(Color.RED);
+                layout_1.setBackgroundColor(Color.YELLOW);
+                layout_11.setBackgroundColor(Color.GREEN);
             }
         });
 
@@ -467,6 +752,27 @@ public class CommunicationPlate extends AppCompatActivity {
                     image_d.setImageResource(R.drawable.gwa_ja_);
                     textd.setText(text11.getText());
                     count ++;}
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
+                layout_1.setBackgroundColor(Color.RED);
+                layout_6.setBackgroundColor(Color.YELLOW);
+                layout_12.setBackgroundColor(Color.GREEN);
             }
         });
 
@@ -489,6 +795,27 @@ public class CommunicationPlate extends AppCompatActivity {
                     image_d.setImageResource(R.drawable.gyul_);
                     textd.setText(text12.getText());
                     count ++;}
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
+                layout_2.setBackgroundColor(Color.RED);
+                layout_7.setBackgroundColor(Color.YELLOW);
+                layout_13.setBackgroundColor(Color.GREEN);
             }
         });
 
@@ -511,6 +838,27 @@ public class CommunicationPlate extends AppCompatActivity {
                     image_d.setImageResource(R.drawable.hag_gyo_001_);
                     textd.setText(text13.getText());
                     count ++;}
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
+                layout_3.setBackgroundColor(Color.RED);
+                layout_8.setBackgroundColor(Color.YELLOW);
+                layout_14.setBackgroundColor(Color.GREEN);
             }
         });
 
@@ -533,6 +881,27 @@ public class CommunicationPlate extends AppCompatActivity {
                     image_d.setImageResource(R.drawable.meog_eo_yo_);
                     textd.setText(text14.getText());
                     count ++;}
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
+                layout_4.setBackgroundColor(Color.RED);
+                layout_9.setBackgroundColor(Color.YELLOW);
+                layout_15.setBackgroundColor(Color.GREEN);
             }
         });
 
@@ -555,6 +924,27 @@ public class CommunicationPlate extends AppCompatActivity {
                     image_d.setImageResource(R.drawable.sig_sa_ha_gi_);
                     textd.setText(text15.getText());
                     count ++;}
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
+                layout_5.setBackgroundColor(Color.RED);
+                layout_10.setBackgroundColor(Color.YELLOW);
+                layout_16.setBackgroundColor(Color.GREEN);
             }
         });
 
@@ -577,6 +967,27 @@ public class CommunicationPlate extends AppCompatActivity {
                     image_d.setImageResource(R.drawable.yi_sa_seon_saeng_nim_002_);
                     textd.setText(text16.getText());
                     count ++;}
+
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+
+                layout_6.setBackgroundColor(Color.RED);
+                layout_11.setBackgroundColor(Color.YELLOW);
+                layout_1.setBackgroundColor(Color.GREEN);
             }
         });
     }
