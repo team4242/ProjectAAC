@@ -3,27 +3,69 @@ package com.example.projectaac;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
+import static java.sql.DriverManager.println;
+
 
 public class DBManager extends SQLiteOpenHelper {
-    public DBManager(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    //데이터베이스
+    private static final String DATABASE_NAME = "table.db";
+    private static final int DATABASE_VERSION = 2;
+
+
+    //테이블
+    public static final String TABLE_NAME_CP = "cpTB";
+    public static final String TABLE_NAME_SYMBOL = "symbolTB";
+    public static final String TABLE_NAME_PREDICT = "predictTB";
+    public static final String TABLE_NAME_FAVORITE = "favoriteTB";
+    public static final String TABLE_NAME_CATEGORY = "categoryTB";
+    //테이블 공통
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_NAME = "name";
+    //테이블 개별
+    public static final String SYMBOL_ID = "symbolID";
+    public static final String COLUMN_IMAGE_PATH = "image";
+    public static final String COLUMN_COUNT = "count";
+    public static final String COLUMN_LOCATION = "location";
+    public static final String COLUMN_COMBI_ID = "combiID";
+
+    //CP 테이블
+    public static final String DATABASE_CREATE_CP = "create table "
+            + TABLE_NAME_CP + "("
+            + COLUMN_ID + " integer primary key autoincrement,"
+            + SYMBOL_ID + " integer)";
+    //SYMBOL 테이블
+    public static final String DATABASE_CREATE_SYMBOL = "create table "
+            + TABLE_NAME_SYMBOL + "("
+            + COLUMN_ID + " integer primary key autoincrement,"
+            + COLUMN_NAME + " text,"
+            + COLUMN_IMAGE_PATH + " text,"
+            + COLUMN_COUNT + " integer,"
+            + COLUMN_LOCATION + " integer)";
+    //PREDICT 테이블
+    public static final String DATABASE_CREATE_PREDICT = "create table "
+            + TABLE_NAME_PREDICT + "("
+            + COLUMN_ID + " integer primary key autoincrement,"
+            + COLUMN_COUNT + " integer)";
+    //FAVORITE 테이블
+    public static final String DATABASE_CREATE_FAVORITE = "create table "
+            + TABLE_NAME_FAVORITE + "("
+            + COLUMN_ID + " integer primary key autoincrement,"
+            + COLUMN_COMBI_ID + " text)";
+
+
+    public DBManager(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        println("onCreate() called");
 //      CP = 의사소통판, Symbol = 상징, Predict = 예측, Favorite = 즐겨찾기
-        String sql_CP =         "create table CommunicationPlate (CP_id integer primary key autoincrement, symbol_id integer, foreign key(symbol_id) references Symbol(symbol_id))";
-        String sql_symbol =     "create table Symbol (symbol_id integer primary key autoincrement, iamgePath text, symbol_name text, count integer)";
-        String sql_predict =    "create table Predict (symbolCombi_id text primary key autoincrement, count integer)";
-        String sql_favorite =   "create table Favorite (favorite_id integer primary key autoincrement, symbolcombi_id text)";
-        db.execSQL(sql_CP);
-        db.execSQL((sql_symbol));
-        db.execSQL(sql_predict);
-        db.execSQL(sql_favorite);
-        Toast.makeText(null, "DB is opened", Toast.LENGTH_LONG).show();
+        db.execSQL(DATABASE_CREATE_CP);
+        db.execSQL((DATABASE_CREATE_SYMBOL));
+        db.execSQL(DATABASE_CREATE_PREDICT);
+        db.execSQL(DATABASE_CREATE_FAVORITE);
     }
 
     @Override

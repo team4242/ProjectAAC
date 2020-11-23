@@ -71,12 +71,14 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
+                android:id="@+id/et_symbolName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="8"
                 android:hint="상징이름입력" />
 
             <EditText
+                android:id="@+id/et_categoryName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="14"
