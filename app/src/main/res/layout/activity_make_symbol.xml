@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#7ACEF4"
     android:orientation="vertical"
-
-    android:background="#2C03A9F4"
     tools:context=".MakeSymbolActivity">
 
     <LinearLayout
@@ -91,10 +90,54 @@
         android:id="@+id/btn_AddSymbol"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#03A9F4"
         android:text="상징 목록에 추가"
         android:gravity="center"
         android:textSize="20dp"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_margin="20dp"
+        android:background="#FFFFFF"
+        android:columnCount="4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="여기에 이미지 불러오기"
+            android:textSize="20dp" />
+    </GridLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="                                                  " />
+
+        <ImageButton
+            android:id="@+id/btn_home"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0"
+            android:background="#03A9F4"
+            app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    </LinearLayout>
 
 </LinearLayout>

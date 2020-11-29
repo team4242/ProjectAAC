@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#03A9F4"
+    android:background="#7ACEF4"
     android:hapticFeedbackEnabled="true"
     android:orientation="vertical"
     tools:context=".option">
@@ -15,7 +15,7 @@
         android:layout_height="80dp"
         android:layout_margin="30dp"
         android:layout_marginTop="100dp"
-        android:background="#2196F3"
+        android:background="#03A9F4"
         android:text="TTS속도조절"
         android:textSize="24sp" />
 
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_margin="30dp"
-        android:background="#2196F3"
+        android:background="#03A9F4"
         android:text="상징 예측 기능"
         android:textSize="24sp" />
 
@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_margin="30dp"
-        android:background="#2196F3"
+        android:background="#03A9F4"
         android:text="버튼 효과음"
         android:textSize="24sp" />
 
@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_margin="30dp"
-        android:background="#2196F3"
+        android:background="#03A9F4"
         android:text="시작 화면 설정"
         android:textSize="24sp" />
 
@@ -50,8 +50,36 @@
         android:id="@+id/btn_option5"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_margin="30dp"
-        android:background="#2196F3"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="#03A9F4"
         android:text="클라우드 백업"
         android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="                                                  " />
+
+        <ImageButton
+            android:id="@+id/btn_home"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0"
+            android:background="#03A9F4"
+            app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    </LinearLayout>
 </LinearLayout>

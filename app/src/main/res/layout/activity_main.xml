@@ -10,18 +10,35 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/Title"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="나만의 AAC"
-        android:textSize="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        android:layout_height="200dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="나만의 AAC"
+            android:textColor="#3F51B5"
+            android:textSize="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.25" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:gravity="center_horizontal"
+            android:text="Augmentative and Alternative Communication"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +49,7 @@
         <Button
             android:id="@+id/btn_CP"
             android:layout_width="170dp"
-            android:layout_height="350dp"
+            android:layout_height="450dp"
             android:layout_margin="15dp"
             android:layout_marginStart="30dp"
             android:layout_marginLeft="30dp"
@@ -42,13 +59,14 @@
             android:layout_marginBottom="30dp"
             android:background="#03A9F4"
             android:gravity="center_horizontal|fill_vertical"
+            android:shadowColor="#3F51B5"
             android:text="의사소통판"
             android:textSize="20dp" />
 
         <Button
             android:id="@+id/btn_CPchange"
             android:layout_width="170dp"
-            android:layout_height="350dp"
+            android:layout_height="450dp"
             android:layout_margin="15dp"
             android:layout_marginStart="30dp"
             android:layout_marginLeft="30dp"
@@ -61,11 +79,12 @@
             android:textSize="20dp" />
     </LinearLayout>
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_option"
-        android:layout_width="50dp"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:background="#03A9F4"
-        android:text="◎" />
+        app:srcCompat="@android:drawable/ic_menu_manage" />
+
 </LinearLayout>
