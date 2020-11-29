@@ -10,7 +10,7 @@ import static java.sql.DriverManager.println;
 public class DBManager extends SQLiteOpenHelper {
     //데이터베이스
     private static final String DATABASE_NAME = "table.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
 
     //테이블
@@ -23,7 +23,6 @@ public class DBManager extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_NAME = "name";
     //테이블 개별
-    public static final String SYMBOL_ID = "symbolID";
     public static final String COLUMN_IMAGE_PATH = "image";
     public static final String COLUMN_COUNT = "count";
     public static final String COLUMN_LOCATION = "location";
@@ -33,7 +32,22 @@ public class DBManager extends SQLiteOpenHelper {
     public static final String DATABASE_CREATE_CP = "create table "
             + TABLE_NAME_CP + "("
             + COLUMN_ID + " integer primary key autoincrement,"
-            + SYMBOL_ID + " integer)";
+            + "symbol1 integer,"
+            + "symbol2 integer,"
+            + "symbol3 integer,"
+            + "symbol4 integer,"
+            + "symbol5 integer,"
+            + "symbol6 integer,"
+            + "symbol7 integer,"
+            + "symbol8 integer,"
+            + "symbol9 integer,"
+            + "symbol10 integer,"
+            + "symbol11 integer,"
+            + "symbol12 integer,"
+            + "symbol13 integer,"
+            + "symbol14 integer,"
+            + "symbol15 integer,"
+            + "symbol16 integer)";
     //SYMBOL 테이블
     public static final String DATABASE_CREATE_SYMBOL = "create table "
             + TABLE_NAME_SYMBOL + "("
@@ -57,7 +71,6 @@ public class DBManager extends SQLiteOpenHelper {
     public DBManager(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         println("onCreate() called");
