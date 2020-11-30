@@ -23,7 +23,7 @@ import java.net.URL;
 public class CommunicationPlate extends AppCompatActivity {
 
     int count = 0;
-    Button btn_recommand;
+    Button btn_recommand, btn_1, btn_2, btn_3, btn_4, btn_5;
     ImageButton btn_tts;
     ImageButton btn_home;
     LinearLayout layout_a,layout_b,layout_c,layout_d,layout_1,layout_2,layout_3,layout_4,layout_5,layout_6,layout_7,layout_8,layout_9,layout_10,layout_11,layout_12,layout_13,layout_14,layout_15,layout_16;
@@ -60,6 +60,201 @@ public class CommunicationPlate extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        btn_1 = (Button)findViewById(R.id.btn_1);
+        btn_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                image_1.setImageResource(R.drawable.an_nyeong_ha_se_yo_002_);
+                image_2.setImageResource(R.drawable.cin_gu_);
+                image_3.setImageResource(R.drawable.joh_a_yo_002_);
+                image_4.setImageResource(R.drawable.silh_eo_yo_);
+                image_5.setImageResource(R.drawable.gi_bun_joh_a_yo_);
+                image_6.setImageResource(R.drawable.ju_se_yo_002_);
+                image_7.setImageResource(R.drawable.mul_002_1);
+                image_8.setImageResource(R.drawable.u_yu_003_);
+                image_9.setImageResource(R.drawable.mu_seun_mal_in_ji_jal_mo_reu_gess_eo_yo_);
+                image_10.setImageResource(R.drawable.geod_da_);
+                image_11.setImageResource(R.drawable.gwa_ja_);
+                image_12.setImageResource(R.drawable.gyul_);
+                image_13.setImageResource(R.drawable.hag_gyo_001_);
+                image_14.setImageResource(R.drawable.meog_eo_yo_);
+                image_15.setImageResource(R.drawable.sig_sa_ha_gi_);
+                image_16.setImageResource(R.drawable.yi_sa_seon_saeng_nim_002_);
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+            }
+        });
+
+        btn_2 = (Button)findViewById(R.id.btn_2);
+        btn_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                image_5.setImageResource(R.drawable.an_nyeong_ha_se_yo_002_);
+                image_6.setImageResource(R.drawable.cin_gu_);
+                image_7.setImageResource(R.drawable.joh_a_yo_002_);
+                image_8.setImageResource(R.drawable.silh_eo_yo_);
+                image_9.setImageResource(R.drawable.gi_bun_joh_a_yo_);
+                image_10.setImageResource(R.drawable.ju_se_yo_002_);
+                image_11.setImageResource(R.drawable.mul_002_1);
+                image_12.setImageResource(R.drawable.u_yu_003_);
+                image_13.setImageResource(R.drawable.mu_seun_mal_in_ji_jal_mo_reu_gess_eo_yo_);
+                image_14.setImageResource(R.drawable.geod_da_);
+                image_15.setImageResource(R.drawable.gwa_ja_);
+                image_16.setImageResource(R.drawable.gyul_);
+                image_1.setImageResource(R.drawable.hag_gyo_001_);
+                image_2.setImageResource(R.drawable.meog_eo_yo_);
+                image_3.setImageResource(R.drawable.sig_sa_ha_gi_);
+                image_4.setImageResource(R.drawable.yi_sa_seon_saeng_nim_002_);
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+            }
+        });
+
+        btn_3 = (Button)findViewById(R.id.btn_3);
+        btn_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                image_9.setImageResource(R.drawable.an_nyeong_ha_se_yo_002_);
+                image_10.setImageResource(R.drawable.cin_gu_);
+                image_11.setImageResource(R.drawable.joh_a_yo_002_);
+                image_12.setImageResource(R.drawable.silh_eo_yo_);
+                image_13.setImageResource(R.drawable.gi_bun_joh_a_yo_);
+                image_14.setImageResource(R.drawable.ju_se_yo_002_);
+                image_15.setImageResource(R.drawable.mul_002_1);
+                image_16.setImageResource(R.drawable.u_yu_003_);
+                image_1.setImageResource(R.drawable.mu_seun_mal_in_ji_jal_mo_reu_gess_eo_yo_);
+                image_2.setImageResource(R.drawable.geod_da_);
+                image_3.setImageResource(R.drawable.gwa_ja_);
+                image_4.setImageResource(R.drawable.gyul_);
+                image_5.setImageResource(R.drawable.hag_gyo_001_);
+                image_6.setImageResource(R.drawable.meog_eo_yo_);
+                image_7.setImageResource(R.drawable.sig_sa_ha_gi_);
+                image_8.setImageResource(R.drawable.yi_sa_seon_saeng_nim_002_);
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+            }
+        });
+
+        btn_4 = (Button)findViewById(R.id.btn_4);
+        btn_4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                image_13.setImageResource(R.drawable.an_nyeong_ha_se_yo_002_);
+                image_14.setImageResource(R.drawable.cin_gu_);
+                image_15.setImageResource(R.drawable.joh_a_yo_002_);
+                image_16.setImageResource(R.drawable.silh_eo_yo_);
+                image_1.setImageResource(R.drawable.gi_bun_joh_a_yo_);
+                image_2.setImageResource(R.drawable.ju_se_yo_002_);
+                image_3.setImageResource(R.drawable.mul_002_1);
+                image_4.setImageResource(R.drawable.u_yu_003_);
+                image_5.setImageResource(R.drawable.mu_seun_mal_in_ji_jal_mo_reu_gess_eo_yo_);
+                image_6.setImageResource(R.drawable.geod_da_);
+                image_7.setImageResource(R.drawable.gwa_ja_);
+                image_8.setImageResource(R.drawable.gyul_);
+                image_9.setImageResource(R.drawable.hag_gyo_001_);
+                image_10.setImageResource(R.drawable.meog_eo_yo_);
+                image_11.setImageResource(R.drawable.sig_sa_ha_gi_);
+                image_12.setImageResource(R.drawable.yi_sa_seon_saeng_nim_002_);
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
+            }
+        });
+
+        btn_5 = (Button)findViewById(R.id.btn_5);
+        btn_5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                image_3.setImageResource(R.drawable.an_nyeong_ha_se_yo_002_);
+                image_4.setImageResource(R.drawable.cin_gu_);
+                image_1.setImageResource(R.drawable.joh_a_yo_002_);
+                image_2.setImageResource(R.drawable.silh_eo_yo_);
+                image_7.setImageResource(R.drawable.gi_bun_joh_a_yo_);
+                image_8.setImageResource(R.drawable.ju_se_yo_002_);
+                image_5.setImageResource(R.drawable.mul_002_1);
+                image_6.setImageResource(R.drawable.u_yu_003_);
+                image_11.setImageResource(R.drawable.mu_seun_mal_in_ji_jal_mo_reu_gess_eo_yo_);
+                image_12.setImageResource(R.drawable.geod_da_);
+                image_9.setImageResource(R.drawable.gwa_ja_);
+                image_10.setImageResource(R.drawable.gyul_);
+                image_15.setImageResource(R.drawable.hag_gyo_001_);
+                image_16.setImageResource(R.drawable.meog_eo_yo_);
+                image_13.setImageResource(R.drawable.sig_sa_ha_gi_);
+                image_14.setImageResource(R.drawable.yi_sa_seon_saeng_nim_002_);
+                layout_1.setBackgroundColor(Color.WHITE);
+                layout_2.setBackgroundColor(Color.WHITE);
+                layout_3.setBackgroundColor(Color.WHITE);
+                layout_4.setBackgroundColor(Color.WHITE);
+                layout_5.setBackgroundColor(Color.WHITE);
+                layout_6.setBackgroundColor(Color.WHITE);
+                layout_7.setBackgroundColor(Color.WHITE);
+                layout_8.setBackgroundColor(Color.WHITE);
+                layout_9.setBackgroundColor(Color.WHITE);
+                layout_10.setBackgroundColor(Color.WHITE);
+                layout_11.setBackgroundColor(Color.WHITE);
+                layout_12.setBackgroundColor(Color.WHITE);
+                layout_13.setBackgroundColor(Color.WHITE);
+                layout_14.setBackgroundColor(Color.WHITE);
+                layout_15.setBackgroundColor(Color.WHITE);
+                layout_16.setBackgroundColor(Color.WHITE);
             }
         });
 
