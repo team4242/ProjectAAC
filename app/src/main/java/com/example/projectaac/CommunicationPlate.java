@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +15,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class CommunicationPlate extends AppCompatActivity {
 
@@ -307,19 +314,27 @@ public class CommunicationPlate extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (count == 0){
-                    image_a.setImageResource(R.drawable.an_nyeong_ha_se_yo_002_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_1)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_a.setImageBitmap(b);
                     texta.setText(text1.getText());
                     count ++;
                 }else if(count == 1){
-                    image_b.setImageResource(R.drawable.an_nyeong_ha_se_yo_002_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_1)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_b.setImageBitmap(b);
                     textb.setText(text1.getText());
                     count ++;
                 }else if(count == 2){
-                    image_c.setImageResource(R.drawable.an_nyeong_ha_se_yo_002_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_1)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_c.setImageBitmap(b);
                     textc.setText(text1.getText());
                     count ++;
                 }else if(count == 3){
-                    image_d.setImageResource(R.drawable.an_nyeong_ha_se_yo_002_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_1)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_d.setImageBitmap(b);
                     textd.setText(text1.getText());
                     count ++;}
 
@@ -350,19 +365,27 @@ public class CommunicationPlate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (count == 0){
-                    image_a.setImageResource(R.drawable.cin_gu_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_2)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_a.setImageBitmap(b);
                     texta.setText(text2.getText());
                     count ++;
                 }else if(count == 1){
-                    image_b.setImageResource(R.drawable.cin_gu_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_2)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_b.setImageBitmap(b);
                     textb.setText(text2.getText());
                     count ++;
                 }else if(count == 2){
-                    image_c.setImageResource(R.drawable.cin_gu_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_2)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_c.setImageBitmap(b);
                     textc.setText(text2.getText());
                     count ++;
                 }else if(count == 3){
-                    image_d.setImageResource(R.drawable.cin_gu_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_2)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_d.setImageBitmap(b);
                     textd.setText(text2.getText());
                     count ++;}
 
@@ -393,19 +416,27 @@ public class CommunicationPlate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (count == 0){
-                    image_a.setImageResource(R.drawable.joh_a_yo_002_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_3)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_a.setImageBitmap(b);
                     texta.setText(text3.getText());
                     count ++;
                 }else if(count == 1){
-                    image_b.setImageResource(R.drawable.joh_a_yo_002_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_3)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_b.setImageBitmap(b);
                     textb.setText(text3.getText());
                     count ++;
                 }else if(count == 2){
-                    image_c.setImageResource(R.drawable.joh_a_yo_002_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_3)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_c.setImageBitmap(b);
                     textc.setText(text3.getText());
                     count ++;
                 }else if(count == 3){
-                    image_d.setImageResource(R.drawable.joh_a_yo_002_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_3)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_d.setImageBitmap(b);
                     textd.setText(text3.getText());
                     count ++;}
 
@@ -436,19 +467,27 @@ public class CommunicationPlate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (count == 0){
-                    image_a.setImageResource(R.drawable.silh_eo_yo_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_4)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_a.setImageBitmap(b);
                     texta.setText(text4.getText());
                     count ++;
                 }else if(count == 1){
-                    image_b.setImageResource(R.drawable.silh_eo_yo_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_4)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_b.setImageBitmap(b);
                     textb.setText(text4.getText());
                     count ++;
                 }else if(count == 2){
-                    image_c.setImageResource(R.drawable.silh_eo_yo_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_4)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_c.setImageBitmap(b);
                     textc.setText(text4.getText());
                     count ++;
                 }else if(count == 3){
-                    image_d.setImageResource(R.drawable.silh_eo_yo_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_4)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_d.setImageBitmap(b);
                     textd.setText(text4.getText());
                     count ++;}
 
@@ -479,19 +518,27 @@ public class CommunicationPlate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (count == 0){
-                    image_a.setImageResource(R.drawable.gi_bun_joh_a_yo_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_5)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_a.setImageBitmap(b);
                     texta.setText(text5.getText());
                     count ++;
                 }else if(count == 1){
-                    image_b.setImageResource(R.drawable.gi_bun_joh_a_yo_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_5)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_b.setImageBitmap(b);
                     textb.setText(text5.getText());
                     count ++;
                 }else if(count == 2){
-                    image_c.setImageResource(R.drawable.gi_bun_joh_a_yo_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_5)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_c.setImageBitmap(b);
                     textc.setText(text5.getText());
                     count ++;
                 }else if(count == 3){
-                    image_d.setImageResource(R.drawable.gi_bun_joh_a_yo_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_5)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_d.setImageBitmap(b);
                     textd.setText(text5.getText());
                     count ++;}
 
@@ -522,19 +569,27 @@ public class CommunicationPlate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (count == 0){
-                    image_a.setImageResource(R.drawable.ju_se_yo_002_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_6)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_a.setImageBitmap(b);
                     texta.setText(text6.getText());
                     count ++;
                 }else if(count == 1){
-                    image_b.setImageResource(R.drawable.ju_se_yo_002_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_6)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_b.setImageBitmap(b);
                     textb.setText(text6.getText());
                     count ++;
                 }else if(count == 2){
-                    image_c.setImageResource(R.drawable.ju_se_yo_002_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_6)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_c.setImageBitmap(b);
                     textc.setText(text6.getText());
                     count ++;
                 }else if(count == 3){
-                    image_d.setImageResource(R.drawable.ju_se_yo_002_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_6)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_d.setImageBitmap(b);
                     textd.setText(text6.getText());
                     count ++;}
 
@@ -565,19 +620,27 @@ public class CommunicationPlate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (count == 0){
-                    image_a.setImageResource(R.drawable.mul_002_1);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_7)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_a.setImageBitmap(b);
                     texta.setText(text7.getText());
                     count ++;
                 }else if(count == 1){
-                    image_b.setImageResource(R.drawable.mul_002_1);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_7)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_b.setImageBitmap(b);
                     textb.setText(text7.getText());
                     count ++;
                 }else if(count == 2){
-                    image_c.setImageResource(R.drawable.mul_002_1);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_7)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_c.setImageBitmap(b);
                     textc.setText(text7.getText());
                     count ++;
                 }else if(count == 3){
-                    image_d.setImageResource(R.drawable.mul_002_1);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_7)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_d.setImageBitmap(b);
                     textd.setText(text7.getText());
                     count ++;}
 
@@ -608,19 +671,27 @@ public class CommunicationPlate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (count == 0){
-                    image_a.setImageResource(R.drawable.u_yu_003_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_8)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_a.setImageBitmap(b);
                     texta.setText(text8.getText());
                     count ++;
                 }else if(count == 1){
-                    image_b.setImageResource(R.drawable.u_yu_003_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_8)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_b.setImageBitmap(b);
                     textb.setText(text8.getText());
                     count ++;
                 }else if(count == 2){
-                    image_c.setImageResource(R.drawable.u_yu_003_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_8)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_c.setImageBitmap(b);
                     textc.setText(text8.getText());
                     count ++;
                 }else if(count == 3){
-                    image_d.setImageResource(R.drawable.u_yu_003_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_8)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_d.setImageBitmap(b);
                     textd.setText(text8.getText());
                     count ++;}
 
@@ -651,19 +722,27 @@ public class CommunicationPlate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (count == 0){
-                    image_a.setImageResource(R.drawable.mu_seun_mal_in_ji_jal_mo_reu_gess_eo_yo_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_9)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_a.setImageBitmap(b);
                     texta.setText(text9.getText());
                     count ++;
                 }else if(count == 1){
-                    image_b.setImageResource(R.drawable.mu_seun_mal_in_ji_jal_mo_reu_gess_eo_yo_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_9)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_b.setImageBitmap(b);
                     textb.setText(text9.getText());
                     count ++;
                 }else if(count == 2){
-                    image_c.setImageResource(R.drawable.mu_seun_mal_in_ji_jal_mo_reu_gess_eo_yo_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_9)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_c.setImageBitmap(b);
                     textc.setText(text9.getText());
                     count ++;
                 }else if(count == 3){
-                    image_d.setImageResource(R.drawable.mu_seun_mal_in_ji_jal_mo_reu_gess_eo_yo_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_9)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_d.setImageBitmap(b);
                     textd.setText(text9.getText());
                     count ++;}
 
@@ -694,19 +773,27 @@ public class CommunicationPlate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (count == 0){
-                    image_a.setImageResource(R.drawable.geod_da_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_10)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_a.setImageBitmap(b);
                     texta.setText(text10.getText());
                     count ++;
                 }else if(count == 1){
-                    image_b.setImageResource(R.drawable.geod_da_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_10)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_b.setImageBitmap(b);
                     textb.setText(text10.getText());
                     count ++;
                 }else if(count == 2){
-                    image_c.setImageResource(R.drawable.geod_da_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_10)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_c.setImageBitmap(b);
                     textc.setText(text10.getText());
                     count ++;
                 }else if(count == 3){
-                    image_d.setImageResource(R.drawable.geod_da_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_10)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_d.setImageBitmap(b);
                     textd.setText(text10.getText());
                     count ++;}
 
@@ -737,19 +824,27 @@ public class CommunicationPlate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (count == 0){
-                    image_a.setImageResource(R.drawable.gwa_ja_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_11)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_a.setImageBitmap(b);
                     texta.setText(text11.getText());
                     count ++;
                 }else if(count == 1){
-                    image_b.setImageResource(R.drawable.gwa_ja_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_11)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_b.setImageBitmap(b);
                     textb.setText(text11.getText());
                     count ++;
                 }else if(count == 2){
-                    image_c.setImageResource(R.drawable.gwa_ja_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_11)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_c.setImageBitmap(b);
                     textc.setText(text11.getText());
                     count ++;
                 }else if(count == 3){
-                    image_d.setImageResource(R.drawable.gwa_ja_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_11)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_d.setImageBitmap(b);
                     textd.setText(text11.getText());
                     count ++;}
 
@@ -780,19 +875,27 @@ public class CommunicationPlate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (count == 0){
-                    image_a.setImageResource(R.drawable.gyul_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_12)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_a.setImageBitmap(b);
                     texta.setText(text12.getText());
                     count ++;
                 }else if(count == 1){
-                    image_b.setImageResource(R.drawable.gyul_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_12)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_b.setImageBitmap(b);
                     textb.setText(text12.getText());
                     count ++;
                 }else if(count == 2){
-                    image_c.setImageResource(R.drawable.gyul_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_12)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_c.setImageBitmap(b);
                     textc.setText(text12.getText());
                     count ++;
                 }else if(count == 3){
-                    image_d.setImageResource(R.drawable.gyul_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_12)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_d.setImageBitmap(b);
                     textd.setText(text12.getText());
                     count ++;}
 
@@ -823,19 +926,27 @@ public class CommunicationPlate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (count == 0){
-                    image_a.setImageResource(R.drawable.hag_gyo_001_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_13)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_a.setImageBitmap(b);
                     texta.setText(text13.getText());
                     count ++;
                 }else if(count == 1){
-                    image_b.setImageResource(R.drawable.hag_gyo_001_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_13)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_b.setImageBitmap(b);
                     textb.setText(text13.getText());
                     count ++;
                 }else if(count == 2){
-                    image_c.setImageResource(R.drawable.hag_gyo_001_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_13)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_c.setImageBitmap(b);
                     textc.setText(text13.getText());
                     count ++;
                 }else if(count == 3){
-                    image_d.setImageResource(R.drawable.hag_gyo_001_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_13)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_d.setImageBitmap(b);
                     textd.setText(text13.getText());
                     count ++;}
 
@@ -866,19 +977,27 @@ public class CommunicationPlate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (count == 0){
-                    image_a.setImageResource(R.drawable.meog_eo_yo_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_14)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_a.setImageBitmap(b);
                     texta.setText(text14.getText());
                     count ++;
                 }else if(count == 1){
-                    image_b.setImageResource(R.drawable.meog_eo_yo_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_14)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_b.setImageBitmap(b);
                     textb.setText(text14.getText());
                     count ++;
                 }else if(count == 2){
-                    image_c.setImageResource(R.drawable.meog_eo_yo_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_14)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_c.setImageBitmap(b);
                     textc.setText(text14.getText());
                     count ++;
                 }else if(count == 3){
-                    image_d.setImageResource(R.drawable.meog_eo_yo_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_14)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_d.setImageBitmap(b);
                     textd.setText(text14.getText());
                     count ++;}
 
@@ -909,19 +1028,27 @@ public class CommunicationPlate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (count == 0){
-                    image_a.setImageResource(R.drawable.sig_sa_ha_gi_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_15)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_a.setImageBitmap(b);
                     texta.setText(text15.getText());
                     count ++;
                 }else if(count == 1){
-                    image_b.setImageResource(R.drawable.sig_sa_ha_gi_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_15)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_b.setImageBitmap(b);
                     textb.setText(text15.getText());
                     count ++;
                 }else if(count == 2){
-                    image_c.setImageResource(R.drawable.sig_sa_ha_gi_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_15)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_c.setImageBitmap(b);
                     textc.setText(text15.getText());
                     count ++;
                 }else if(count == 3){
-                    image_d.setImageResource(R.drawable.sig_sa_ha_gi_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_15)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_d.setImageBitmap(b);
                     textd.setText(text15.getText());
                     count ++;}
 
@@ -952,19 +1079,27 @@ public class CommunicationPlate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (count == 0){
-                    image_a.setImageResource(R.drawable.yi_sa_seon_saeng_nim_002_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_16)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_a.setImageBitmap(b);
                     texta.setText(text16.getText());
                     count ++;
                 }else if(count == 1){
-                    image_b.setImageResource(R.drawable.yi_sa_seon_saeng_nim_002_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_16)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_b.setImageBitmap(b);
                     textb.setText(text16.getText());
                     count ++;
                 }else if(count == 2){
-                    image_c.setImageResource(R.drawable.yi_sa_seon_saeng_nim_002_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_16)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_c.setImageBitmap(b);
                     textc.setText(text16.getText());
                     count ++;
                 }else if(count == 3){
-                    image_d.setImageResource(R.drawable.yi_sa_seon_saeng_nim_002_);
+                    BitmapDrawable d = (BitmapDrawable)((ImageView) findViewById(R.id.image_16)).getDrawable();
+                    Bitmap b = d.getBitmap();
+                    image_d.setImageBitmap(b);
                     textd.setText(text16.getText());
                     count ++;}
 
@@ -991,4 +1126,28 @@ public class CommunicationPlate extends AppCompatActivity {
             }
         });
     }
+    private Bitmap getBitmap(String url) {
+        URL imgUrl = null;
+        HttpURLConnection connection = null;
+        InputStream is = null;
+        Bitmap retBitmap = null;
+        try{
+            imgUrl = new URL(url);
+            connection = (HttpURLConnection) imgUrl.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            is = connection.getInputStream();
+            retBitmap = BitmapFactory.decodeStream(is);
+        }catch(Exception e){
+            e.printStackTrace();
+        return null;
+        }
+        finally {
+            if(connection!=null) {
+                connection.disconnect();
+            }
+            return retBitmap;
+        }
+    }
+
 }
