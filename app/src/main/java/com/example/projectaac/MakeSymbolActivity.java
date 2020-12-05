@@ -2,53 +2,60 @@ package com.example.projectaac;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.GridLayout;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.xmlpull.v1.XmlPullParser;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class MakeSymbolActivity extends Activity {
 
     DBManager dbManager;
     SQLiteDatabase database;
+    SQLiteDatabase readDatabase;
+    int symbolNum;
+    private GridView symbolGrid;
+
 
     private static final int REQUEST_CODE = 0;
+
     private ImageView SelectedImage;
     private Button btn_gallery, btn_search, btn_AddSymbol;
     private EditText et_symbolName, et_categoryName;
 
     String symbolName, categoryName, imagePath;
 
-    ImageButton btn_home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_symbol);
-
-        btn_home = (ImageButton)findViewById(R.id.btn_home);
-        btn_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CpChangeActivity.class);
-                startActivity(intent);
-            }
-        });
 
 
 
@@ -94,11 +101,46 @@ public class MakeSymbolActivity extends Activity {
 
                 //이건 됩니다
                 database.execSQL("insert into symbolTB(name, image) values('" + symbolName +"', '" +imagePath + "')");
+                Intent intent = getIntent();
+                finish();
+                startActivity((intent));
 
 
             }
         });
+        //KAAC에서 상징 검색하는 기능
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("http://220.69.171.35:8080/searchsymbols/index.jsp");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+        readDatabase = dbManager.getReadableDatabase();
+        Cursor cursor = readDatabase.rawQuery("SELECT * FROM symbolTB", null);
+        symbolNum = cursor.getCount();
+
+        symbolGrid = findViewById(R.id.symbolGirdView);
+        GridSymbolAdapter adapter = new GridSymbolAdapter();
+
+        if(cursor!=null&& cursor.getCount()!=0) {
+            cursor.moveToFirst();
+            for (int i = 0; i < symbolNum ; i++) {
+                adapter.addItem(new SymbolListItem(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4)));
+
+                if (i == symbolNum - 1) {
+                    continue;
+                } else {
+                    cursor.moveToNext();
+                }
+            }
+        }
+        symbolGrid.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
+
 
     //갤러리에서 사진 불러오는 파일스트림
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -117,12 +159,12 @@ public class MakeSymbolActivity extends Activity {
         }
     }
     //이미지를 내부저장소에 저장하는 파일스트림
-    private void saveBitmapToPng(Bitmap bitmap, String name) {
+    public void saveBitmapToPng(Bitmap bitmap, String name) {
 
         File storage = getCacheDir();
         String fileName = name + ".png";
         File tempFile = new File(storage, fileName);
-        imagePath = fileName;
+        imagePath = storage +"/"+ fileName;
 
         try {
             tempFile.createNewFile();
