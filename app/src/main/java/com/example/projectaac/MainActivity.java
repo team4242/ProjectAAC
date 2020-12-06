@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String BaseSymbolName[] = {"","친구", "가요", "기분좋아요", "과자", "귤", "학교", "좋아요", "맞아요", "주세요", "먹어요", "모르겠어요", "물", "물컵", "선생님" ,"된장국", "수저", "아니에요", "우유", "의사선생님", "배가 아파요", "경찰에 신고해주세요", "때렸어요", "맞았어요", "밀었어요",};
+    private static final String BaseSymbolName[] = {" ","친구", "가요", "기분좋아요", "과자", "귤", "학교", "좋아요", "맞아요", "주세요", "먹어요", "모르겠어요", "물", "물컵", "선생님" ,"된장국", "수저", "아니에요", "우유", "의사선생님", "배가 아파요", "경찰에 신고해주세요", "때렸어요", "맞았어요", "밀었어요",};
     private static final int BaseImagePath[] = {R.drawable.blank,R.drawable.cin_gu_, R.drawable.geod_da_, R.drawable.gi_bun_joh_a_yo_, R.drawable.gwa_ja_
             , R.drawable.gyul_,R.drawable.hag_gyo_001_, R.drawable.joh_a_yo_001_,R.drawable.joh_a_yo_002_,R.drawable.ju_se_yo_002_,R.drawable.meog_eo_yo_
             ,R.drawable.mu_seun_mal_in_ji_jal_mo_reu_gess_eo_yo_,R.drawable.mul_002_1,R.drawable.mul_keob_002_,R.drawable.seon_saeng_nim_001_,R.drawable.si_geum_ci_doen_jang_gug_002_
@@ -78,27 +78,26 @@ public class MainActivity extends AppCompatActivity {
                 dbquery.insertSymbol(BaseSymbolName[i],imagePath);
             }
             //초기 테이블 설정 노가다
-            dbquery.setChangeCP("일상",1,1);
-            dbquery.setChangeCP("일상",2,2);
-            dbquery.setChangeCP("일상",3,3);
-            dbquery.setChangeCP("일상",4,4);
-            dbquery.setChangeCP("음식",1,1);
+            dbquery.setChangeCP("일상",2,1);
+            dbquery.setChangeCP("일상",3,2);
+            dbquery.setChangeCP("일상",4,3);
+            dbquery.setChangeCP("음식",5,1);
             dbquery.setChangeCP("음식",6,2);
-            dbquery.setChangeCP("일상",7,5);
-            dbquery.setChangeCP("일상",8,6);
-            dbquery.setChangeCP("일상",9,7);
+            dbquery.setChangeCP("일상",7,4);
+            dbquery.setChangeCP("일상",8,5);
+            dbquery.setChangeCP("일상",9,6);
             dbquery.setChangeCP("음식",10,3);
             dbquery.setChangeCP("음식",11,4);
-            dbquery.setChangeCP("일상",12,8);
+            dbquery.setChangeCP("일상",12,7);
             dbquery.setChangeCP("음식",13,5);
             dbquery.setChangeCP("음식",14,6);
-            dbquery.setChangeCP("일상",15,9);
+            dbquery.setChangeCP("일상",15,8);
             dbquery.setChangeCP("음식",16,7);
             dbquery.setChangeCP("음식",17,8);
-            dbquery.setChangeCP("일상",18,10);
+            dbquery.setChangeCP("일상",18,9);
             dbquery.setChangeCP("음식",19,9);
-            dbquery.setChangeCP("일상",20,11);
-            dbquery.setChangeCP("도움",1,1);
+            dbquery.setChangeCP("일상",20,10);
+            dbquery.setChangeCP("도움",21,1);
             dbquery.setChangeCP("도움",22,2);
             dbquery.setChangeCP("도움",23,3);
             dbquery.setChangeCP("도움",24,4);

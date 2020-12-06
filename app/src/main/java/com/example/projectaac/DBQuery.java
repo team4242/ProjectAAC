@@ -38,13 +38,13 @@ public class DBQuery {
         cursor.close();         //커서 사용 후 꼭 닫아줍시다.
         return symbolName;
     }
-    //상징 테이블의 cursor로 반환하는 메소드
+    //상징 테이블 전체 cursor로 반환하는 메소드
     public Cursor getAllSymbol(){
         database = dbManager.getWritableDatabase();
         Cursor cursor = database.rawQuery("SELECT * FROM symbolTB", null);
         return cursor;
     }
-    //입력받은 cp의 상징id 담은 arraylist 반환하는 메소드
+    //cp의 이름을 입력받아 해당 cp의 상징id를 담은 arraylist 반환하는 메소드
     public ArrayList<Integer> getTableSymbol(String cpName){
         database = dbManager.getWritableDatabase();
         Cursor symbolId = database.rawQuery("select * from cpTB where name ='" +cpName + "'",null);

@@ -93,9 +93,6 @@ public class MakeSymbolActivity extends Activity {
                 Toast.makeText(getApplicationContext(), imagePath, Toast.LENGTH_SHORT).show();
                 //데이터베이스에 상징 데이터 저장
 
-                //이건 안되고
-                //database.execSQL("insert into symbolTB(name, image) values(" + symbolName +", " +imagePath + ")");
-
                 //이건 됩니다
                 dbquery.insertSymbol(symbolName, imagePath);
                 Intent intent = getIntent();
