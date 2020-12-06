@@ -37,9 +37,6 @@ import java.util.ArrayList;
 public class MakeSymbolActivity extends Activity {
 
     DBManager dbManager;
-    SQLiteDatabase database;
-    SQLiteDatabase readDatabase;
-    int symbolNum;
     private GridView symbolGrid;
 
 
@@ -49,7 +46,7 @@ public class MakeSymbolActivity extends Activity {
     private Button btn_gallery, btn_search, btn_AddSymbol;
     private EditText et_symbolName, et_categoryName;
 
-    String symbolName, categoryName, imagePath;
+    String symbolName, categoryName;
 
 
     @Override
@@ -61,7 +58,6 @@ public class MakeSymbolActivity extends Activity {
 
         //DB 사용할 수 있게 선언
         dbManager = new DBManager(this);
-        database = dbManager.getWritableDatabase();
 
         //액티비티에서 버튼, 이미지뷰 등 불러오기
         SelectedImage = (ImageView) findViewById(R.id.SelectedImage);
@@ -87,12 +83,13 @@ public class MakeSymbolActivity extends Activity {
         btn_AddSymbol.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DBQuery dbquery = new DBQuery(dbManager);
                 symbolName = et_symbolName.getText().toString().trim();
                 categoryName = et_categoryName.getText().toString().trim();
                 //불러온 이미지를 내부저장소에 저장
                 SelectedImage.setDrawingCacheEnabled(true);
                 Bitmap bitmap = SelectedImage.getDrawingCache();
-                saveBitmapToPng(bitmap, symbolName);
+                String imagePath = saveBitmapToPng(bitmap, symbolName);
                 Toast.makeText(getApplicationContext(), imagePath, Toast.LENGTH_SHORT).show();
                 //데이터베이스에 상징 데이터 저장
 
@@ -100,7 +97,7 @@ public class MakeSymbolActivity extends Activity {
                 //database.execSQL("insert into symbolTB(name, image) values(" + symbolName +", " +imagePath + ")");
 
                 //이건 됩니다
-                database.execSQL("insert into symbolTB(name, image) values('" + symbolName +"', '" +imagePath + "')");
+                dbquery.insertSymbol(symbolName, imagePath);
                 Intent intent = getIntent();
                 finish();
                 startActivity((intent));
@@ -117,16 +114,15 @@ public class MakeSymbolActivity extends Activity {
                 startActivity(intent);
             }
         });
-
-        readDatabase = dbManager.getReadableDatabase();
-        Cursor cursor = readDatabase.rawQuery("SELECT * FROM symbolTB", null);
-        symbolNum = cursor.getCount();
-
+        //모든 상징 검색해서 symbolGrid 에 뿌려주는 기능
         symbolGrid = findViewById(R.id.symbolGirdView);
         GridSymbolAdapter adapter = new GridSymbolAdapter();
 
-        if(cursor!=null&& cursor.getCount()!=0) {
+        DBQuery dbquery = new DBQuery(dbManager);
+        Cursor cursor = dbquery.getAllSymbol();
+        if(!dbquery.isSymbolNull()) {   //symbolTB 가 비어있지 않으면
             cursor.moveToFirst();
+            int symbolNum = cursor.getCount();
             for (int i = 0; i < symbolNum ; i++) {
                 adapter.addItem(new SymbolListItem(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4)));
 
@@ -137,6 +133,7 @@ public class MakeSymbolActivity extends Activity {
                 }
             }
         }
+        dbquery.dbClose();
         symbolGrid.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
@@ -158,13 +155,13 @@ public class MakeSymbolActivity extends Activity {
             }
         }
     }
-    //이미지를 내부저장소에 저장하는 파일스트림
-    public void saveBitmapToPng(Bitmap bitmap, String name) {
+    //이미지를 내부저장소에 저장하는 파일스트림 메소드 이미지 경로를 반환.
+    private String saveBitmapToPng(Bitmap bitmap, String name) {
 
         File storage = getCacheDir();
         String fileName = name + ".png";
         File tempFile = new File(storage, fileName);
-        imagePath = storage +"/"+ fileName;
+        String imagePath = storage +"/"+ fileName;
 
         try {
             tempFile.createNewFile();
@@ -174,5 +171,6 @@ public class MakeSymbolActivity extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return imagePath;
     }
 }

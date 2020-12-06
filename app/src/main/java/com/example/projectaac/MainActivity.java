@@ -19,18 +19,16 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String BaseSymbolName[] = {"안녕하세요", "친구", "가요", "기분좋아요", "과자", "귤", "학교", "좋아요", "맞아요", "주세요", "먹어요", "모르겠어요", "물", "물컵", "선생님" ,"된장국", "수저", "아니에요", "우유", "의사선생님"};
-    private static final int BaseImagePath[] = {R.drawable.an_nyeong_ha_se_yo_002_,R.drawable.cin_gu_, R.drawable.geod_da_, R.drawable.gi_bun_joh_a_yo_, R.drawable.gwa_ja_, R.drawable.gyul_,R.drawable.hag_gyo_001_, R.drawable.joh_a_yo_001_,R.drawable.joh_a_yo_002_,R.drawable.ju_se_yo_002_,R.drawable.meog_eo_yo_
-            ,R.drawable.mu_seun_mal_in_ji_jal_mo_reu_gess_eo_yo_,R.drawable.mul_002_1,R.drawable.mul_keob_002_,R.drawable.seon_saeng_nim_001_,R.drawable.si_geum_ci_doen_jang_gug_002_,R.drawable.sig_sa_ha_gi_,R.drawable.silh_eo_yo_,R.drawable.u_yu_003_,R.drawable.yi_sa_seon_saeng_nim_002_};
-
+    private static final String BaseSymbolName[] = {"","친구", "가요", "기분좋아요", "과자", "귤", "학교", "좋아요", "맞아요", "주세요", "먹어요", "모르겠어요", "물", "물컵", "선생님" ,"된장국", "수저", "아니에요", "우유", "의사선생님", "배가 아파요", "경찰에 신고해주세요", "때렸어요", "맞았어요", "밀었어요",};
+    private static final int BaseImagePath[] = {R.drawable.blank,R.drawable.cin_gu_, R.drawable.geod_da_, R.drawable.gi_bun_joh_a_yo_, R.drawable.gwa_ja_
+            , R.drawable.gyul_,R.drawable.hag_gyo_001_, R.drawable.joh_a_yo_001_,R.drawable.joh_a_yo_002_,R.drawable.ju_se_yo_002_,R.drawable.meog_eo_yo_
+            ,R.drawable.mu_seun_mal_in_ji_jal_mo_reu_gess_eo_yo_,R.drawable.mul_002_1,R.drawable.mul_keob_002_,R.drawable.seon_saeng_nim_001_,R.drawable.si_geum_ci_doen_jang_gug_002_
+            ,R.drawable.sig_sa_ha_gi_,R.drawable.silh_eo_yo_,R.drawable.u_yu_003_,R.drawable.yi_sa_seon_saeng_nim_002_,R.drawable.bae_ga_a_pa_yo_201_
+            , R.drawable.gyeong_cal_seo_e_sin_go_hae_ju_se_yo_,R.drawable.jeo_reul_ddae_ryeoss_eo_yo_,R.drawable.maj_ass_eo_yo_2,R.drawable.mil_eoss_eo_yo_};
     DBManager dbManager;
-    SQLiteDatabase database;
-    SQLiteDatabase writeDatabase;
-
     Button btn_CP;
     Button btn_CPchangeMenu;
     ImageButton btn_option;
-    String imagePath;
 
 
     @Override
@@ -38,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        dbManager = new DBManager(this);
         btn_CP = (Button)findViewById(R.id.btn_CP);
         btn_CP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,29 +65,53 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        dbManager = new DBManager(this);
-        database = dbManager.getReadableDatabase();
-        writeDatabase = dbManager.getWritableDatabase();
-
-
         //DB의 symbolTB가 비어있으면 drawable을 bitmap으로 바꿔서 저장
-        Cursor cursor = database.rawQuery("SELECT * FROM symbolTB", null);
-        int dbCount = cursor.getCount();
-        if(dbCount == 0){
-            for(int i=0; i<20; i++) {
+        DBQuery dbquery = new DBQuery(dbManager);
+
+        if(dbquery.isSymbolNull()){
+            dbquery.insertCP("일상");
+            dbquery.insertCP("음식");
+            dbquery.insertCP("도움");
+            for(int i=0; i<25; i++) {
                 Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(), BaseImagePath[i]);
-                saveBitmapToPng(bitmap, BaseSymbolName[i]);
-                writeDatabase.execSQL("insert into symbolTB(name, image) values ('" + BaseSymbolName[i] + "','" +  imagePath + "')");
+                String imagePath = saveBitmapToPng(bitmap, BaseSymbolName[i]);
+                dbquery.insertSymbol(BaseSymbolName[i],imagePath);
             }
+            //초기 테이블 설정 노가다
+            dbquery.setChangeCP("일상",1,1);
+            dbquery.setChangeCP("일상",2,2);
+            dbquery.setChangeCP("일상",3,3);
+            dbquery.setChangeCP("일상",4,4);
+            dbquery.setChangeCP("음식",1,1);
+            dbquery.setChangeCP("음식",6,2);
+            dbquery.setChangeCP("일상",7,5);
+            dbquery.setChangeCP("일상",8,6);
+            dbquery.setChangeCP("일상",9,7);
+            dbquery.setChangeCP("음식",10,3);
+            dbquery.setChangeCP("음식",11,4);
+            dbquery.setChangeCP("일상",12,8);
+            dbquery.setChangeCP("음식",13,5);
+            dbquery.setChangeCP("음식",14,6);
+            dbquery.setChangeCP("일상",15,9);
+            dbquery.setChangeCP("음식",16,7);
+            dbquery.setChangeCP("음식",17,8);
+            dbquery.setChangeCP("일상",18,10);
+            dbquery.setChangeCP("음식",19,9);
+            dbquery.setChangeCP("일상",20,11);
+            dbquery.setChangeCP("도움",1,1);
+            dbquery.setChangeCP("도움",22,2);
+            dbquery.setChangeCP("도움",23,3);
+            dbquery.setChangeCP("도움",24,4);
+            dbquery.setChangeCP("도움",25,5);
         }
+        dbquery.dbClose();
     }
-    public void saveBitmapToPng(Bitmap bitmap, String name) {
+    private String saveBitmapToPng(Bitmap bitmap, String name) {
 
         File storage = getCacheDir();
         String fileName = name + ".png";
         File tempFile = new File(storage, fileName);
-        imagePath = storage +"/"+ fileName;
-
+        String imagePath = storage +"/"+ fileName;
         try {
             tempFile.createNewFile();
             FileOutputStream out = new FileOutputStream(tempFile);
@@ -97,5 +120,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return imagePath;
     }
 }

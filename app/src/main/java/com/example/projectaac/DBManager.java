@@ -3,14 +3,15 @@ package com.example.projectaac;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import static java.sql.DriverManager.println;
 
 
 public class DBManager extends SQLiteOpenHelper {
     //데이터베이스
     private static final String DATABASE_NAME = "table.db";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 6;
+    public static SQLiteDatabase database;
+    private DBManager dbManager;
 
 
 
@@ -38,6 +39,7 @@ public class DBManager extends SQLiteOpenHelper {
     public static final String DATABASE_CREATE_CP = "create table "
             + TABLE_NAME_CP + "("
             + COLUMN_ID + " integer primary key autoincrement,"
+            + COLUMN_NAME + " text,"
             + "symbol1 integer,"
             + "symbol2 integer,"
             + "symbol3 integer,"
@@ -55,14 +57,14 @@ public class DBManager extends SQLiteOpenHelper {
             + "symbol15 integer,"
             + "symbol16 integer)";
     //SYMBOL 테이블
-    //id, name, image, count, location
+    //id, name, image, count
     public static final String DATABASE_CREATE_SYMBOL = "create table "
             + TABLE_NAME_SYMBOL + "("
             + COLUMN_ID + " integer primary key autoincrement,"
             + COLUMN_NAME + " text,"
             + COLUMN_IMAGE_PATH + " text,"
             + COLUMN_COUNT + " integer,"
-            + COLUMN_LOCATION + " integer)";
+            + COLUMN_LOCATION +" integer)";
     //PREDICT 테이블
     //id, count
     public static final String DATABASE_CREATE_PREDICT = "create table "
@@ -82,15 +84,14 @@ public class DBManager extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         println("onCreate() called");
 //      CP = 의사소통판, Symbol = 상징, Predict = 예측, Favorite = 즐겨찾기
         db.execSQL(DATABASE_CREATE_CP);
         db.execSQL((DATABASE_CREATE_SYMBOL));
         db.execSQL(DATABASE_CREATE_PREDICT);
         db.execSQL(DATABASE_CREATE_FAVORITE);
-
     }
-
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -100,6 +101,5 @@ public class DBManager extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PREDICT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_FAVORITE);
         onCreate(db);
-
     }
 }
