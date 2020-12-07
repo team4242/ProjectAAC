@@ -51,7 +51,19 @@ public class Location_recommend extends FragmentActivity implements OnMapReadyCa
         markerOptions.position(location);
         googleMap.addMarker(markerOptions);
 
+        LatLng location2 = new LatLng(36.365152, 127.34662);
+        MarkerOptions markerOptions2 = new MarkerOptions();
+        markerOptions2.title("공대3호관");
+        markerOptions2.snippet("강의실");
+        markerOptions2.position(location2);
+        googleMap.addMarker(markerOptions2);
 
+        LatLng location3 = new LatLng(36.36830, 127.34180);
+        MarkerOptions markerOptions3 = new MarkerOptions();
+        markerOptions3.title("인문대학");
+        markerOptions3.snippet("강의실");
+        markerOptions3.position(location3);
+        googleMap.addMarker(markerOptions3);
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 16));
     }
