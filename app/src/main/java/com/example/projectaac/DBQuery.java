@@ -14,6 +14,7 @@ public class DBQuery {
     public DBQuery(DBManager dbManager){
         this.dbManager = dbManager;
     }
+
     //sqlite 닫기    DB 사용 후 꼭 닫아줍시다
     public void dbClose(){
         database.close();
@@ -51,7 +52,11 @@ public class DBQuery {
         symbolId.moveToFirst();
         ArrayList<Integer> symbolIdList = new ArrayList<Integer>();
         for(int i=2; i<18; i++){
-            symbolIdList.add(symbolId.getInt(i));
+            if(symbolId.getInt(i)==0){
+                symbolIdList.add(0);
+            }else {
+                symbolIdList.add(symbolId.getInt(i)-1);
+            }
         }
         symbolId.close();
         return symbolIdList;

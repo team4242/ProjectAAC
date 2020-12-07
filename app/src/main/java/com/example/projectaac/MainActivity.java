@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String BaseSymbolName[] = {" ","친구", "가요", "기분좋아요", "과자", "귤", "학교", "좋아요", "맞아요", "주세요", "먹어요", "모르겠어요", "물", "물컵", "선생님" ,"된장국", "수저", "아니에요", "우유", "의사선생님", "배가 아파요", "경찰에 신고해주세요", "때렸어요", "맞았어요", "밀었어요",};
+    private static final String BaseSymbolName[] = {" ","친구", "가요", "기분좋아요", "과자", "귤", "학교", "좋아요", "맞아요", "주세요", "먹어요", "모르겠어요", "물", "물컵", "선생님" ,"된장국", "수저", "아니에요", "우유", "의사선생님", "배가 아파요", "경찰에신고해주세요", "때렸어요", "맞았어요", "밀었어요",};
     private static final int BaseImagePath[] = {R.drawable.blank,R.drawable.cin_gu_, R.drawable.geod_da_, R.drawable.gi_bun_joh_a_yo_, R.drawable.gwa_ja_
             , R.drawable.gyul_,R.drawable.hag_gyo_001_, R.drawable.joh_a_yo_001_,R.drawable.joh_a_yo_002_,R.drawable.ju_se_yo_002_,R.drawable.meog_eo_yo_
             ,R.drawable.mu_seun_mal_in_ji_jal_mo_reu_gess_eo_yo_,R.drawable.mul_002_1,R.drawable.mul_keob_002_,R.drawable.seon_saeng_nim_001_,R.drawable.si_geum_ci_doen_jang_gug_002_
