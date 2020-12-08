@@ -4,6 +4,18 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
+    signingConfigs {
+
+
+
+        release {
+            storeFile file('ProjectAAC.jks')
+            storePassword "123456"
+            keyAlias "AAC"
+            keyPassword "123456"
+        }
+    }
+
     defaultConfig {
         applicationId "com.example.projectaac"
         minSdkVersion 16
@@ -18,6 +30,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
