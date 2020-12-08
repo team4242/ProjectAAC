@@ -157,6 +157,7 @@
 
     <GridLayout
 
+        android:id="@+id/CpGridView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -215,10 +216,10 @@
                     android:id="@+id/text2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:text="친구"
                     android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:layout_gravity="center_horizontal"></TextView>
+                    android:textColor="#000000"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -240,10 +241,10 @@
                     android:id="@+id/text3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
                     android:text="좋아요"
                     android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:layout_gravity="center_horizontal"></TextView>
+                    android:textColor="#000000"></TextView>
             </LinearLayout>
 
 
@@ -266,10 +267,10 @@
                     android:id="@+id/text4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
                     android:text="싫어요"
                     android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:layout_gravity="center_horizontal"></TextView>
+                    android:textColor="#000000"></TextView>
             </LinearLayout>
         </LinearLayout>
 
@@ -322,10 +323,10 @@
                     android:id="@+id/text6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:text="주세요"
                     android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:layout_gravity="center_horizontal"></TextView>
+                    android:textColor="#000000"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -347,10 +348,10 @@
                     android:id="@+id/text7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
                     android:text="물"
                     android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:layout_gravity="center_horizontal"></TextView>
+                    android:textColor="#000000"></TextView>
             </LinearLayout>
 
 
@@ -373,10 +374,10 @@
                     android:id="@+id/text8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="싫어요"
+                    android:layout_gravity="center_horizontal"
+                    android:text="우유"
                     android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:layout_gravity="center_horizontal"></TextView>
+                    android:textColor="#000000"></TextView>
             </LinearLayout>
         </LinearLayout>
 
@@ -404,10 +405,10 @@
                     android:id="@+id/text9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:text="모르겠어요"
                     android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:layout_gravity="center_horizontal"></TextView>
+                    android:textColor="#000000"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -429,10 +430,10 @@
                     android:id="@+id/text10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:text="걸어가요"
                     android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:layout_gravity="center_horizontal"></TextView>
+                    android:textColor="#000000"></TextView>
             </LinearLayout>
 
 
@@ -455,10 +456,10 @@
                     android:id="@+id/text11"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
                     android:text="간식"
                     android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:layout_gravity="center_horizontal"></TextView>
+                    android:textColor="#000000"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -480,10 +481,10 @@
                     android:id="@+id/text12"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
                     android:text="과일"
                     android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:layout_gravity="center_horizontal"></TextView>
+                    android:textColor="#000000"></TextView>
             </LinearLayout>
         </LinearLayout>
 
@@ -511,10 +512,10 @@
                     android:id="@+id/text13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:text="학교"
                     android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:layout_gravity="center_horizontal"></TextView>
+                    android:textColor="#000000"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -536,10 +537,10 @@
                     android:id="@+id/text14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:text="먹어요"
                     android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:layout_gravity="center_horizontal"></TextView>
+                    android:textColor="#000000"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -561,10 +562,10 @@
                     android:id="@+id/text15"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
                     android:text="수저"
                     android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:layout_gravity="center_horizontal"></TextView>
+                    android:textColor="#000000"></TextView>
             </LinearLayout>
 
 
@@ -587,10 +588,10 @@
                     android:id="@+id/text16"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
                     android:text="의사선생님"
                     android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:layout_gravity="center_horizontal"></TextView>
+                    android:textColor="#000000"></TextView>
 
             </LinearLayout>
         </LinearLayout>
@@ -628,7 +629,7 @@
             android:layout_height="40dp"
             android:layout_weight="1"
             android:background="#03A9F4"
-            android:text="일상3" />
+            android:text="일상" />
 
         <Button
             android:id="@+id/btn_4"
@@ -640,7 +641,7 @@
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:background="#03A9F4"
-            android:text="학교" />
+            android:text="음식" />
 
         <Button
             android:id="@+id/btn_5"
@@ -648,7 +649,7 @@
             android:layout_height="40dp"
             android:layout_weight="1"
             android:background="#03A9F4"
-            android:text="긴급상황" />
+            android:text="도움" />
 
     </LinearLayout>
 
