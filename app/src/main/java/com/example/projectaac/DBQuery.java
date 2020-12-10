@@ -45,6 +45,11 @@ public class DBQuery {
         Cursor cursor = database.rawQuery("SELECT * FROM symbolTB", null);
         return cursor;
     }
+    public Cursor getNoUsedSymbol(){
+        database = dbManager.getWritableDatabase();
+        Cursor cursor = database.rawQuery("SELECT * FROM symbolTB where used = 0", null);
+        return cursor;
+    }
     //cp의 이름을 입력받아 해당 cp의 상징id를 담은 arraylist 반환하는 메소드
     public ArrayList<Integer> getTableSymbol(String cpName){
         database = dbManager.getWritableDatabase();
@@ -72,7 +77,7 @@ public class DBQuery {
     //새로운 상징 추가하는 메소드
     public void insertSymbol(String symbolName, String imagePath){
         database = dbManager.getWritableDatabase();
-        database.execSQL("insert into symbolTB(name, image) values('" + symbolName +"', '" +imagePath + "')");
+        database.execSQL("insert into symbolTB(name, image, used) values('" + symbolName +"', '" +imagePath + "', 0)");
     }
     //즐겨찾기 추가하는 메소드
     //public void insertFavorite{}
@@ -97,12 +102,22 @@ public class DBQuery {
     public void setChangeCP(String tableName, int symbolId, int location){
         database = dbManager.getWritableDatabase();
         String symbolNum = "symbol"+ Integer.toString(location);
-        database.execSQL("update cpTB set " + symbolNum + "=" + symbolId +" where name ='" + tableName +"'" );
+        database.execSQL("update cpTB set " + symbolNum + " = " + symbolId +" where name ='" + tableName +"'" );
+        database.execSQL("update symbolTB set used = 1 where id ='" + symbolId + "'");
     }
     //symbolTB의 텍스트 변경하는 메소드
     public void setChangeSymbolText(int symbolId, String changeName){
         database = dbManager.getWritableDatabase();
         database.execSQL("update symbolTB set name =" + changeName + " where id = '" + symbolId +"'");
+    }
+    //symbol의 used 값 변경하는 메소드
+    public void setUsedFalse(int symbolId){
+        database = dbManager.getWritableDatabase();
+        database.execSQL("update symbolTB set used = 0 where id = " + symbolId);
+    }
+    public void setUsedTrue(int symbolId){
+        database = dbManager.getWritableDatabase();
+        database.execSQL("update symbolTB set used = 1 where id = " + symbolId);
     }
 
     //확인

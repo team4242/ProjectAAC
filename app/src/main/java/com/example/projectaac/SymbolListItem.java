@@ -4,14 +4,15 @@ public class SymbolListItem {
     int ID;
     String name;
     String imagePath;
-    int count;
+    int used;
     int location;
+    int backgroundcolor;
 
-    public SymbolListItem(int ID, String name, String imagePath, int count, int location){
+    public SymbolListItem(int ID, String name, String imagePath, int used, int location){
         this.ID = ID;
         this.name = name;
         this.imagePath = imagePath;
-        this.count = count;
+        this.used = used;
         this.location= location;
     }
 
@@ -39,12 +40,12 @@ public class SymbolListItem {
         this.imagePath = imagePath;
     }
 
-    public int getCount() {
-        return count;
+    public int getUsed() {
+        return used;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setUsed(int used) {
+        this.used = used;
     }
 
     public int getLocation() {
@@ -54,4 +55,5 @@ public class SymbolListItem {
     public void setLocation(int location) {
         this.location = location;
     }
+
 }

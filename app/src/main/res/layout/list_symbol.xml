@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/symbolImage"
         android:layout_width="wrap_content"
-        android:layout_height="90dp" />
+        android:layout_height="90dp"/>
     <TextView
         android:id="@+id/symbolName"
         android:layout_width="wrap_content"

@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".LoadingActivity"></activity>
         <activity android:name=".CPMenuActivity" />
         <activity android:name=".Location_recommend" />
         <activity android:name=".TTS" />

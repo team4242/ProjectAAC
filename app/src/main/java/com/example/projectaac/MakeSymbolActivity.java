@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridLayout;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -113,7 +114,7 @@ public class MakeSymbolActivity extends Activity {
         });
         //모든 상징 검색해서 symbolGrid 에 뿌려주는 기능
         symbolGrid = findViewById(R.id.symbolGirdView);
-        GridSymbolAdapter adapter = new GridSymbolAdapter();
+        final GridSymbolAdapter adapter = new GridSymbolAdapter();
 
         DBQuery dbquery = new DBQuery(dbManager);
         Cursor cursor = dbquery.getAllSymbol();
@@ -121,18 +122,35 @@ public class MakeSymbolActivity extends Activity {
             cursor.moveToFirst();
             int symbolNum = cursor.getCount();
             for (int i = 0; i < symbolNum ; i++) {
-                adapter.addItem(new SymbolListItem(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4)));
-
+                //0번 상징이 공백이기 때문에 1번 상징부터 시작하도록 함
                 if (i == symbolNum - 1) {
                     continue;
                 } else {
                     cursor.moveToNext();
                 }
+                adapter.addItem(new SymbolListItem(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4)));
             }
         }
         dbquery.dbClose();
         symbolGrid.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+        symbolGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(position == adapter.getCheckedItem()){
+                    adapter.setCheckedItem(0);
+                    adapter.setAdapterChecked(false);
+                }else {
+                    adapter.setCheckedItem(position);
+                    adapter.setAdapterChecked(true);
+                }
+
+                adapter.notifyDataSetChanged();
+                symbolGrid.setAdapter(adapter);
+            }
+        });
+
     }
 
 

@@ -25,6 +25,7 @@ public class DBManager extends SQLiteOpenHelper {
     //테이블 개별
     public static final String COLUMN_IMAGE_PATH = "image";
     public static final String COLUMN_COUNT = "count";
+    public static final String COLUMN_USED = "used";
     public static final String COLUMN_LOCATION = "location";
     public static final String COLUMN_COMBI_ID = "combiID";
 
@@ -51,13 +52,13 @@ public class DBManager extends SQLiteOpenHelper {
             + "symbol15 integer,"
             + "symbol16 integer)";
     //SYMBOL 테이블
-    //id, name, image, count
+    //id, name, image, used, count
     public static final String DATABASE_CREATE_SYMBOL = "create table "
             + TABLE_NAME_SYMBOL + "("
             + COLUMN_ID + " integer primary key autoincrement,"
             + COLUMN_NAME + " text,"
             + COLUMN_IMAGE_PATH + " text,"
-            + COLUMN_COUNT + " integer,"
+            + COLUMN_USED + " integer,"
             + COLUMN_LOCATION +" integer)";
     //PREDICT 테이블
     //id, count
