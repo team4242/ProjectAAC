@@ -47,7 +47,7 @@ public class GridSymbolAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return position;
+        return items.get(position).ID;
     }
 
     @Override

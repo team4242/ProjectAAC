@@ -58,7 +58,7 @@ public class CpChangeActivity extends AppCompatActivity {
         cursor1.moveToFirst();   //왠지 모르게 이거 안하면 에러남
         cp_adapter.clear(); //어댑터 다 삭제
         for (int i = 0; i < symbolList.size(); i++) {
-            cursor1.moveToPosition(symbolList.get(i));
+            cursor1.moveToPosition(symbolList.get(i)-1);
             cp_adapter.addItem(new SymbolListItem(cursor1.getInt(0),cursor1.getString(1),cursor1.getString(2),
                     cursor1.getInt(3),cursor1.getInt(4)));
         }
@@ -99,8 +99,9 @@ public class CpChangeActivity extends AppCompatActivity {
                 cursor.moveToFirst();   //왠지 모르게 이거 안하면 에러남
                 cp_adapter.clear(); //어댑터 다 삭제
                 for (int i = 0; i < symbolList.size(); i++) {
-                    cursor.moveToPosition(symbolList.get(i));
-                    cp_adapter.addItem(new SymbolListItem(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4)));
+                    cursor.moveToPosition(symbolList.get(i)-1);
+                    cp_adapter.addItem(new SymbolListItem(cursor.getInt(0),cursor.getString(1),
+                            cursor.getString(2),cursor.getInt(3),cursor.getInt(4)));
                 }
                 dbQuery.dbClose();      //꼭꼭 닫아줍시다
                 symbol_adapter.setAdapterChecked(false);    //둘 다 체크 지우기
@@ -123,8 +124,9 @@ public class CpChangeActivity extends AppCompatActivity {
                 cursor.moveToFirst();
                 cp_adapter.clear();//어댑터 다 삭제
               for (int i = 0; i < symbolList.size(); i++) {
-                    cursor.moveToPosition(symbolList.get(i));
-                    cp_adapter.addItem(new SymbolListItem(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4)));
+                    cursor.moveToPosition(symbolList.get(i)-1);
+                    cp_adapter.addItem(new SymbolListItem(cursor.getInt(0),cursor.getString(1),
+                            cursor.getString(2),cursor.getInt(3),cursor.getInt(4)));
                 }
                 dbQuery.dbClose();
                 symbol_adapter.setAdapterChecked(false);    //둘 다 체크 지우기
@@ -144,11 +146,12 @@ public class CpChangeActivity extends AppCompatActivity {
                 ArrayList<Integer> symbolList = new ArrayList<Integer>();
                 symbolList = dbQuery.getTableSymbol("도움");
                 Cursor cursor = dbQuery.getAllSymbol();
-                cursor.moveToFirst();
+
                 cp_adapter.clear();//어댑터 다 삭제
                 for (int i = 0; i < symbolList.size(); i++) {
-                    cursor.moveToPosition(symbolList.get(i));
-                    cp_adapter.addItem(new SymbolListItem(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4)));
+                    cursor.moveToPosition(symbolList.get(i)-1);
+                    cp_adapter.addItem(new SymbolListItem(cursor.getInt(0),cursor.getString(1),
+                            cursor.getString(2),cursor.getInt(3),cursor.getInt(4)));
                 }
                 dbQuery.dbClose();
                 symbol_adapter.setAdapterChecked(false);    //둘 다 체크 지우기
@@ -185,7 +188,8 @@ public class CpChangeActivity extends AppCompatActivity {
                 cp_adapter.clear();//어댑터 다 삭제
                 for (int i = 0; i < symbolList.size(); i++) {
                     cursor.moveToPosition(symbolList.get(i));
-                    cp_adapter.addItem(new SymbolListItem(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4)));
+                    cp_adapter.addItem(new SymbolListItem(cursor.getInt(0),cursor.getString(1),cursor.getString(2),
+                            cursor.getInt(3),cursor.getInt(4)));
                 }
                 dbQuery.dbClose();
                 CpGridView.setAdapter(cp_adapter);
