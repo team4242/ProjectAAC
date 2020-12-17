@@ -21,6 +21,7 @@ public class CpChangeActivity extends AppCompatActivity {
     GridView CpGridView, symbolGridView;
     GridSymbolAdapter cp_adapter, symbol_adapter, new_symbol_adapter;
     DBManager dbManager;
+    DBQuery dbQuery;
 
     Cursor cursor1, cursor2;
 
@@ -51,10 +52,10 @@ public class CpChangeActivity extends AppCompatActivity {
 
 
         //위 그리드뷰 기본 화면 출력
-        final DBQuery dbQuery1 = new DBQuery(dbManager);
+        dbQuery = new DBQuery(dbManager);
         ArrayList<Integer> symbolList = new ArrayList<Integer>();
-        symbolList = dbQuery1.getTableSymbol("일상");  //일상 테이블의 상징id 저장
-        cursor1 = dbQuery1.getAllSymbol(); //모든 심볼 불러옴
+        symbolList = dbQuery.getTableSymbol("일상");  //일상 테이블의 상징id 저장
+        cursor1 = dbQuery.getAllSymbol(); //모든 심볼 불러옴
         cursor1.moveToFirst();   //왠지 모르게 이거 안하면 에러남
         cp_adapter.clear(); //어댑터 다 삭제
         for (int i = 0; i < symbolList.size(); i++) {
@@ -62,14 +63,12 @@ public class CpChangeActivity extends AppCompatActivity {
             cp_adapter.addItem(new SymbolListItem(cursor1.getInt(0),cursor1.getString(1),cursor1.getString(2),
                     cursor1.getInt(3),cursor1.getInt(4)));
         }
-        dbQuery1.dbClose();      //꼭꼭 닫아줍시다
         CpGridView.setAdapter(cp_adapter);
         cp_adapter.notifyDataSetChanged();
 
 
         //아래 그리드뷰 기본 출력화면
-        DBQuery dbQuery2 = new DBQuery(dbManager);
-        cursor2 = dbQuery2.getNoUsedSymbol();
+        cursor2 = dbQuery.getNoUsedSymbol();
         cursor2.moveToFirst();
         final int symbolNum = cursor2.getCount();
         if(symbolNum > 1) {
@@ -91,8 +90,6 @@ public class CpChangeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //각 버튼에 해당하는 테이블의 symbol을 불러와서 출력하는 기능
-                DBQuery dbQuery = new DBQuery(dbManager);
-
                 ArrayList<Integer> symbolList = new ArrayList<Integer>();
                 symbolList = dbQuery.getTableSymbol("일상");  //일상 테이블의 상징id 저장
                 Cursor cursor = dbQuery.getAllSymbol(); //모든 심볼 불러옴
@@ -102,7 +99,6 @@ public class CpChangeActivity extends AppCompatActivity {
                     cursor.moveToPosition(symbolList.get(i));
                     cp_adapter.addItem(new SymbolListItem(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4)));
                 }
-                dbQuery.dbClose();      //꼭꼭 닫아줍시다
                 symbol_adapter.setAdapterChecked(false);    //둘 다 체크 지우기
                 cp_adapter.setAdapterChecked(false);
 
@@ -116,7 +112,6 @@ public class CpChangeActivity extends AppCompatActivity {
         btn_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DBQuery dbQuery = new DBQuery(dbManager);
                 ArrayList<Integer> symbolList = new ArrayList<Integer>();
                 symbolList = dbQuery.getTableSymbol("음식");
                 Cursor cursor = dbQuery.getAllSymbol();
@@ -126,7 +121,6 @@ public class CpChangeActivity extends AppCompatActivity {
                     cursor.moveToPosition(symbolList.get(i));
                     cp_adapter.addItem(new SymbolListItem(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4)));
                 }
-                dbQuery.dbClose();
                 symbol_adapter.setAdapterChecked(false);    //둘 다 체크 지우기
                 cp_adapter.setAdapterChecked(false);
 
@@ -140,7 +134,6 @@ public class CpChangeActivity extends AppCompatActivity {
         btn_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DBQuery dbQuery = new DBQuery(dbManager);
                 ArrayList<Integer> symbolList = new ArrayList<Integer>();
                 symbolList = dbQuery.getTableSymbol("도움");
                 Cursor cursor = dbQuery.getAllSymbol();
@@ -150,7 +143,6 @@ public class CpChangeActivity extends AppCompatActivity {
                     cursor.moveToPosition(symbolList.get(i));
                     cp_adapter.addItem(new SymbolListItem(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4)));
                 }
-                dbQuery.dbClose();
                 symbol_adapter.setAdapterChecked(false);    //둘 다 체크 지우기
                 cp_adapter.setAdapterChecked(false);
 
@@ -166,7 +158,6 @@ public class CpChangeActivity extends AppCompatActivity {
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DBQuery dbQuery = new DBQuery(dbManager);
                 ArrayList<Integer> symbolList = new ArrayList<Integer>();
                 switch (ClickedCP) {
                     case 0:
@@ -191,8 +182,7 @@ public class CpChangeActivity extends AppCompatActivity {
                 CpGridView.setAdapter(cp_adapter);
                 cp_adapter.notifyDataSetChanged();
 
-                DBQuery dbQuery2 = new DBQuery(dbManager);
-                cursor2 = dbQuery2.getNoUsedSymbol();
+                cursor2 = dbQuery.getNoUsedSymbol();
                 cursor2.moveToFirst();
                 symbol_adapter.clear();
                 int symbolNum = cursor2.getCount();
@@ -254,7 +244,6 @@ public class CpChangeActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(getApplicationContext(), "비어있지 않은 상징을 선택해주세요", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
@@ -262,7 +251,6 @@ public class CpChangeActivity extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DBQuery dbQuery = new DBQuery(dbManager);
                 ArrayList<Integer> oldsymbolList = new ArrayList<Integer>();
                 ArrayList<Integer> newsymbolList = new ArrayList<Integer>();
 

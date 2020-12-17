@@ -6,7 +6,6 @@ public class SymbolListItem {
     String imagePath;
     int used;
     int location;
-    int backgroundcolor;
 
     public SymbolListItem(int ID, String name, String imagePath, int used, int location){
         this.ID = ID;

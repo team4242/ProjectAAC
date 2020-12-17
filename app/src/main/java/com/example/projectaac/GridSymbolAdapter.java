@@ -47,7 +47,7 @@ public class GridSymbolAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return position;
+        return items.get(position).ID;
     }
 
     @Override
@@ -67,6 +67,8 @@ public class GridSymbolAdapter extends BaseAdapter {
         imageView.setImageBitmap(imgBitmap);
         nameView.setText(listItem.getName());
 
+        //adapter의 원소를 클릭하면 배경색깔 초록색으로, 초록색을 다시 클릭하면 흰색으로,
+        // 다른 원소를 클릭하면 기존원소는 흰색, 클릭한 원소는 초록색
         if(isAdapterChecked){
             if(position == checkedItem) {
                 layout.setBackgroundColor(Color.GREEN);
