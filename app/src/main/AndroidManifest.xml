@@ -12,11 +12,13 @@
         <activity android:name=".LoadingActivity"></activity>
         <activity android:name=".CPMenuActivity" />
         <activity android:name=".Location_recommend" />
-        <activity android:name=".TTS" />
+        <activity android:name=".TTS" >
+        </activity>
         <activity android:name=".option" />
         <activity android:name=".MakeSymbolActivity" />
         <activity android:name=".CpChangeActivity" />
-        <activity android:name=".CommunicationPlate" />
+        <activity android:name=".CommunicationPlate">
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
