@@ -35,7 +35,6 @@ public class DBQuery {
     public String getSymbolNameFromId(int symbolID){
         database = dbManager.getWritableDatabase();
         Cursor cursor = database.rawQuery("select * from symbolTB where id = '"+symbolID +"'",null);
-        cursor.moveToFirst();
         String symbolName = cursor.getString(1);
         cursor.close();         //커서 사용 후 꼭 닫아줍시다.
         return symbolName;
@@ -46,7 +45,6 @@ public class DBQuery {
         Cursor cursor = database.rawQuery("SELECT * FROM symbolTB", null);
         return cursor;
     }
-    //의사소통판에 추가되지 않은 상징을 반환하는 메소드
     public Cursor getNoUsedSymbol(){
         database = dbManager.getWritableDatabase();
         Cursor cursor = database.rawQuery("SELECT * FROM symbolTB where used = 0", null);
@@ -59,10 +57,10 @@ public class DBQuery {
         symbolId.moveToFirst();
         ArrayList<Integer> symbolIdList = new ArrayList<Integer>();
         for(int i=2; i<18; i++){
-            if(symbolId.getInt(i)==0 || symbolId.isNull(i)){
-                symbolIdList.add(1);
+            if(symbolId.getInt(i)==0){
+                symbolIdList.add(0);
             }else {
-                symbolIdList.add(symbolId.getInt(i));
+                symbolIdList.add(symbolId.getInt(i)-1);
             }
         }
         symbolId.close();
@@ -75,7 +73,6 @@ public class DBQuery {
     public void insertCP(String cpName){
         database = dbManager.getWritableDatabase();
         database.execSQL("insert into cpTb (name) values ('"+ cpName +"')");
-
     }
     //새로운 상징 추가하는 메소드
     public void insertSymbol(String symbolName, String imagePath){

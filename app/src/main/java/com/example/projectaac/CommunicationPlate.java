@@ -11,7 +11,6 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,28 +20,24 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class CommunicationPlate extends AppCompatActivity {
 
-
-    public TextToSpeech tts;
     int count = 0, num = 0;
     Button btn_recommand, btn_1, btn_2, btn_3, btn_4, btn_5, btn_number;
-    ImageButton btn_tts, btn_speak;
+    ImageButton btn_tts;
     ImageButton btn_home;
     LinearLayout layout_a,layout_b,layout_c,layout_d,layout_1,layout_2,layout_3,layout_4,layout_5,layout_6,layout_7,layout_8,layout_9,layout_10,layout_11,layout_12,layout_13,layout_14,layout_15,layout_16;
     ImageView image_a,image_b,image_c,image_d,image_1,image_2,image_3,image_4,image_5,image_6,image_7,image_8,image_9,image_10,image_11,image_12,image_13,image_14,image_15,image_16;
     TextView texta,textb,textc,textd,text1,text2,text3,text4,text5,text6,text7,text8,text9,text10,text11,text12,text13,text14,text15,text16;
-
+    GridView CpGridView, symbolGridView;
+    GridSymbolAdapter adapter;
     DBManager dbManager;
-    String tts_statement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,18 +45,6 @@ public class CommunicationPlate extends AppCompatActivity {
         setContentView(R.layout.activity_communication_plate);
 
         dbManager = new DBManager(this);
-
-        tts = new TextToSpeech(CommunicationPlate.this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status == TextToSpeech.SUCCESS){
-                    int result = tts.setLanguage(Locale.KOREA);
-                    if(result == TextToSpeech.LANG_MISSING_DATA || result ==TextToSpeech.LANG_NOT_SUPPORTED){
-                        Toast.makeText(CommunicationPlate.this, "지원하지 않는 언어입니다", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        });
 
         btn_number = (Button)findViewById(R.id.btn_number);
         btn_number.setOnClickListener(new View.OnClickListener() {
@@ -206,12 +189,12 @@ public class CommunicationPlate extends AppCompatActivity {
             }
         });
 
-        btn_speak = (ImageButton)findViewById(R.id.btn_speak);
-        btn_speak.setOnClickListener(new View.OnClickListener() {
+        btn_tts = (ImageButton)findViewById(R.id.btn_tts);
+        btn_tts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tts_statement = (String) texta.getText() + (String) textb.getText() + (String) textc.getText() + (String) textd.getText();
-                tts.speak(tts_statement, TextToSpeech.QUEUE_FLUSH,null);
+                Intent intent = new Intent(getApplicationContext(), TTS.class);
+                startActivity(intent);
             }
         });
 
@@ -305,6 +288,7 @@ public class CommunicationPlate extends AppCompatActivity {
                     textb.setTextSize(14);
                     textc.setTextSize(14);
                     textd.setTextSize(14);
+
                 }
 
                 image_1.setImageResource(R.drawable.an_nyeong_ha_se_yo_002_);
@@ -439,6 +423,7 @@ public class CommunicationPlate extends AppCompatActivity {
                     textb.setTextSize(14);
                     textc.setTextSize(14);
                     textd.setTextSize(14);
+
                 }
 
                 image_5.setImageResource(R.drawable.an_nyeong_ha_se_yo_002_);
@@ -579,58 +564,44 @@ public class CommunicationPlate extends AppCompatActivity {
                 //각 버튼에 해당하는 테이블의 symbol을 불러와서 출력하는 기능
                 DBQuery dbQuery = new DBQuery(dbManager);
                 ArrayList<Integer> symbolList = new ArrayList<Integer>();
+                ArrayList<SymbolListItem> cursor = new ArrayList<>();
                 symbolList = dbQuery.getTableSymbol("일상");  //일상 테이블의 상징id 저장
-                Cursor cursor = dbQuery.getAllSymbol(); //모든 심볼 불러옴
-                cursor.moveToFirst();   //왠지 모르게 이거 안하면 에러남
-                cursor.moveToPosition(symbolList.get(0)-1);
-                text1.setText(cursor.getString(1));
-                image_1.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(1)-1);
-                text2.setText(cursor.getString(1));
-                image_2.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(2)-1);
-                text3.setText(cursor.getString(1));
-                image_3.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(3)-1);
-                text4.setText(cursor.getString(1));
-                image_4.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(4)-1);
-                text5.setText(cursor.getString(1));
-                image_5.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(5)-1);
-                text6.setText(cursor.getString(1));
-                image_6.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(6)-1);
-                text7.setText(cursor.getString(1));
-                image_7.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(7)-1);
-                text8.setText(cursor.getString(1));
-                image_8.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(8)-1);
-                text9.setText(cursor.getString(1));
-                image_9.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(9)-1);
-                text10.setText(cursor.getString(1));
-                image_10.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(10)-1);
-                text11.setText(cursor.getString(1));
-                image_11.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(11)-1);
-                text12.setText(cursor.getString(1));
-                image_12.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(12)-1);
-                text13.setText(cursor.getString(1));
-                image_13.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(13)-1);
-                text14.setText(cursor.getString(1));
-                image_14.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(14)-1);
-                text15.setText(cursor.getString(1));
-                image_15.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(15)-1);
-                text16.setText(cursor.getString(1));
-                image_16.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                dbQuery.dbClose();      //꼭꼭 닫아줍시다
+                cursor = dbQuery.getAllSymbol(); //모든 심볼 불러옴
+
+
+                text1.setText(cursor.get(symbolList.get(0)).getName());
+                image_1.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(0)).getImagePath()));
+                text2.setText(cursor.get(symbolList.get(1)).getName());
+                image_2.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(1)).getImagePath()));
+                text3.setText(cursor.get(symbolList.get(2)).getName());
+                image_3.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(2)).getImagePath()));
+                text4.setText(cursor.get(symbolList.get(3)).getName());
+                image_4.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(3)).getImagePath()));
+                text5.setText(cursor.get(symbolList.get(4)).getName());
+                image_5.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(4)).getImagePath()));
+                text6.setText(cursor.get(symbolList.get(5)).getName());
+                image_6.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(5)).getImagePath()));
+                text7.setText(cursor.get(symbolList.get(6)).getName());
+                image_7.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(6)).getImagePath()));
+                text8.setText(cursor.get(symbolList.get(7)).getName());
+                image_8.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(7)).getImagePath()));
+                text9.setText(cursor.get(symbolList.get(8)).getName());
+                image_9.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(8)).getImagePath()));
+                text10.setText(cursor.get(symbolList.get(9)).getName());
+                image_10.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(9)).getImagePath()));
+                text11.setText(cursor.get(symbolList.get(10)).getName());
+                image_11.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(10)).getImagePath()));
+                text12.setText(cursor.get(symbolList.get(11)).getName());
+                image_12.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(11)).getImagePath()));
+                text13.setText(cursor.get(symbolList.get(12)).getName());
+                image_13.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(12)).getImagePath()));
+                text14.setText(cursor.get(symbolList.get(13)).getName());
+                image_14.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(13)).getImagePath()));
+                text15.setText(cursor.get(symbolList.get(14)).getName());
+                image_15.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(14)).getImagePath()));
+                text16.setText(cursor.get(symbolList.get(15)).getName());
+                image_16.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(15)).getImagePath()));
+
 
                 layout_1.setBackgroundColor(Color.WHITE);
                 layout_2.setBackgroundColor(Color.WHITE);
@@ -737,58 +708,41 @@ public class CommunicationPlate extends AppCompatActivity {
                 //각 버튼에 해당하는 테이블의 symbol을 불러와서 출력하는 기능
                 DBQuery dbQuery = new DBQuery(dbManager);
                 ArrayList<Integer> symbolList = new ArrayList<Integer>();
+                ArrayList<SymbolListItem> cursor = new ArrayList<>();
                 symbolList = dbQuery.getTableSymbol("음식");  //일상 테이블의 상징id 저장
-                Cursor cursor = dbQuery.getAllSymbol(); //모든 심볼 불러옴
-                cursor.moveToFirst();   //왠지 모르게 이거 안하면 에러남
-                cursor.moveToPosition(symbolList.get(0)-1);
-                text1.setText(cursor.getString(1));
-                image_1.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(1)-1);
-                text2.setText(cursor.getString(1));
-                image_2.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(2)-1);
-                text3.setText(cursor.getString(1));
-                image_3.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(3)-1);
-                text4.setText(cursor.getString(1));
-                image_4.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(4)-1);
-                text5.setText(cursor.getString(1));
-                image_5.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(5)-1);
-                text6.setText(cursor.getString(1));
-                image_6.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(6)-1);
-                text7.setText(cursor.getString(1));
-                image_7.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(7)-1);
-                text8.setText(cursor.getString(1));
-                image_8.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(8)-1);
-                text9.setText(cursor.getString(1));
-                image_9.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(9)-1);
-                text10.setText(cursor.getString(1));
-                image_10.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(10)-1);
-                text11.setText(cursor.getString(1));
-                image_11.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(11)-1);
-                text12.setText(cursor.getString(1));
-                image_12.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(12)-1);
-                text13.setText(cursor.getString(1));
-                image_13.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(13)-1);
-                text14.setText(cursor.getString(1));
-                image_14.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(14)-1);
-                text15.setText(cursor.getString(1));
-                image_15.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(15)-1);
-                text16.setText(cursor.getString(1));
-                image_16.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                dbQuery.dbClose();      //꼭꼭 닫아줍시다
+                cursor = dbQuery.getAllSymbol(); //모든 심볼 불러옴
+                text1.setText(cursor.get(symbolList.get(0)).getName());
+                image_1.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(0)).getImagePath()));
+                text2.setText(cursor.get(symbolList.get(1)).getName());
+                image_2.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(1)).getImagePath()));
+                text3.setText(cursor.get(symbolList.get(2)).getName());
+                image_3.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(2)).getImagePath()));
+                text4.setText(cursor.get(symbolList.get(3)).getName());
+                image_4.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(3)).getImagePath()));
+                text5.setText(cursor.get(symbolList.get(4)).getName());
+                image_5.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(4)).getImagePath()));
+                text6.setText(cursor.get(symbolList.get(5)).getName());
+                image_6.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(5)).getImagePath()));
+                text7.setText(cursor.get(symbolList.get(6)).getName());
+                image_7.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(6)).getImagePath()));
+                text8.setText(cursor.get(symbolList.get(7)).getName());
+                image_8.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(7)).getImagePath()));
+                text9.setText(cursor.get(symbolList.get(8)).getName());
+                image_9.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(8)).getImagePath()));
+                text10.setText(cursor.get(symbolList.get(9)).getName());
+                image_10.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(9)).getImagePath()));
+                text11.setText(cursor.get(symbolList.get(10)).getName());
+                image_11.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(10)).getImagePath()));
+                text12.setText(cursor.get(symbolList.get(11)).getName());
+                image_12.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(11)).getImagePath()));
+                text13.setText(cursor.get(symbolList.get(12)).getName());
+                image_13.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(12)).getImagePath()));
+                text14.setText(cursor.get(symbolList.get(13)).getName());
+                image_14.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(13)).getImagePath()));
+                text15.setText(cursor.get(symbolList.get(14)).getName());
+                image_15.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(14)).getImagePath()));
+                text16.setText(cursor.get(symbolList.get(15)).getName());
+                image_16.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(15)).getImagePath()));
 
                 layout_1.setBackgroundColor(Color.WHITE);
                 layout_2.setBackgroundColor(Color.WHITE);
@@ -896,58 +850,42 @@ public class CommunicationPlate extends AppCompatActivity {
                 //각 버튼에 해당하는 테이블의 symbol을 불러와서 출력하는 기능
                 DBQuery dbQuery = new DBQuery(dbManager);
                 ArrayList<Integer> symbolList = new ArrayList<Integer>();
+                ArrayList<SymbolListItem> cursor = new ArrayList<>();
                 symbolList = dbQuery.getTableSymbol("도움");  //일상 테이블의 상징id 저장
-                Cursor cursor = dbQuery.getAllSymbol(); //모든 심볼 불러옴
-                cursor.moveToFirst();   //왠지 모르게 이거 안하면 에러남
-                cursor.moveToPosition(symbolList.get(0)-1);
-                text1.setText(cursor.getString(1));
-                image_1.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(1)-1);
-                text2.setText(cursor.getString(1));
-                image_2.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(2)-1);
-                text3.setText(cursor.getString(1));
-                image_3.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(3)-1);
-                text4.setText(cursor.getString(1));
-                image_4.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(4)-1);
-                text5.setText(cursor.getString(1));
-                image_5.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(5)-1);
-                text6.setText(cursor.getString(1));
-                image_6.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(6)-1);
-                text7.setText(cursor.getString(1));
-                image_7.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(7)-1);
-                text8.setText(cursor.getString(1));
-                image_8.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(8)-1);
-                text9.setText(cursor.getString(1));
-                image_9.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(9)-1);
-                text10.setText(cursor.getString(1));
-                image_10.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(10)-1);
-                text11.setText(cursor.getString(1));
-                image_11.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(11)-1);
-                text12.setText(cursor.getString(1));
-                image_12.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(12)-1);
-                text13.setText(cursor.getString(1));
-                image_13.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(13)-1);
-                text14.setText(cursor.getString(1));
-                image_14.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(14)-1);
-                text15.setText(cursor.getString(1));
-                image_15.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                cursor.moveToPosition(symbolList.get(15)-1);
-                text16.setText(cursor.getString(1));
-                image_16.setImageDrawable(Drawable.createFromPath(cursor.getString(2)));
-                dbQuery.dbClose();      //꼭꼭 닫아줍시다
+                cursor = dbQuery.getAllSymbol(); //모든 심볼 불러옴
+                text1.setText(cursor.get(symbolList.get(0)).getName());
+                image_1.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(0)).getImagePath()));
+                text2.setText(cursor.get(symbolList.get(1)).getName());
+                image_2.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(1)).getImagePath()));
+                text3.setText(cursor.get(symbolList.get(2)).getName());
+                image_3.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(2)).getImagePath()));
+                text4.setText(cursor.get(symbolList.get(3)).getName());
+                image_4.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(3)).getImagePath()));
+                text5.setText(cursor.get(symbolList.get(4)).getName());
+                image_5.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(4)).getImagePath()));
+                text6.setText(cursor.get(symbolList.get(5)).getName());
+                image_6.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(5)).getImagePath()));
+                text7.setText(cursor.get(symbolList.get(6)).getName());
+                image_7.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(6)).getImagePath()));
+                text8.setText(cursor.get(symbolList.get(7)).getName());
+                image_8.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(7)).getImagePath()));
+                text9.setText(cursor.get(symbolList.get(8)).getName());
+                image_9.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(8)).getImagePath()));
+                text10.setText(cursor.get(symbolList.get(9)).getName());
+                image_10.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(9)).getImagePath()));
+                text11.setText(cursor.get(symbolList.get(10)).getName());
+                image_11.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(10)).getImagePath()));
+                text12.setText(cursor.get(symbolList.get(11)).getName());
+                image_12.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(11)).getImagePath()));
+                text13.setText(cursor.get(symbolList.get(12)).getName());
+                image_13.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(12)).getImagePath()));
+                text14.setText(cursor.get(symbolList.get(13)).getName());
+                image_14.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(13)).getImagePath()));
+                text15.setText(cursor.get(symbolList.get(14)).getName());
+                image_15.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(14)).getImagePath()));
+                text16.setText(cursor.get(symbolList.get(15)).getName());
+                image_16.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(15)).getImagePath()));
+
 
                 layout_1.setBackgroundColor(Color.WHITE);
                 layout_2.setBackgroundColor(Color.WHITE);
@@ -2361,7 +2299,5 @@ public class CommunicationPlate extends AppCompatActivity {
             return retBitmap;
         }
     }
-
-
 
 }

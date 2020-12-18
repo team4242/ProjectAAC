@@ -36,12 +36,7 @@ public class LoadingActivity extends AppCompatActivity {
         dbManager = new DBManager(this);
         dbquery = new DBQuery(dbManager);
 
-        //cp 리스트를 저장하는 정적 변수
-        cp_List = new ArrayList<String>();
-        //각 cp 마다 상징모음배열을 hash하는 정적 hashmap
-        cp_SymbolHash = new HashMap<String,String[]>();
-        //각 상징마다 이미지경로를 hash하는 정적 hashmap
-        symbol_ImageHash = new HashMap<String,String>();
+
 
 
 
