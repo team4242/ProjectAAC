@@ -264,7 +264,7 @@ public class CpChangeActivity extends AppCompatActivity {
                     case 0:
                         oldsymbolList = dbQuery.getTableSymbol("일상");
                         for (int i =0; i<16; i++) {
-                            if(cp1_adapter.items.get(i).ID != oldsymbolList.get(i)){
+                            if(cp1_adapter.items.get(i).ID-1 != oldsymbolList.get(i)){
                                 dbQuery.setUsedFalse(oldsymbolList.get(i));
                                 dbQuery.setUsedTrue(cp1_adapter.items.get(i).ID);
                                 dbQuery.setChangeCP("일상", (int) cp1_adapter.items.get(i).ID, i+1);
@@ -274,7 +274,7 @@ public class CpChangeActivity extends AppCompatActivity {
                     case 1:
                         oldsymbolList = dbQuery.getTableSymbol("음식");
                         for (int i =0; i<16; i++) {
-                            if(cp2_adapter.items.get(i).ID != oldsymbolList.get(i)){
+                            if(cp2_adapter.items.get(i).ID-1 != oldsymbolList.get(i)){
                                 dbQuery.setUsedFalse(oldsymbolList.get(i));
                                 dbQuery.setUsedTrue(cp2_adapter.items.get(i).ID);
                                 dbQuery.setChangeCP("음식", (int) cp2_adapter.items.get(i).ID, i+1);
@@ -284,7 +284,7 @@ public class CpChangeActivity extends AppCompatActivity {
                     case 2:
                         oldsymbolList = dbQuery.getTableSymbol("도움");
                         for (int i =0; i<16; i++) {
-                            if(cp3_adapter.items.get(i).ID != oldsymbolList.get(i)){
+                            if(cp3_adapter.items.get(i).ID-1 != oldsymbolList.get(i)){
                                 dbQuery.setUsedFalse(oldsymbolList.get(i));
                                 dbQuery.setUsedTrue(cp3_adapter.items.get(i).ID);
                                 dbQuery.setChangeCP("도움", (int) cp3_adapter.items.get(i).ID, i+1);
@@ -366,12 +366,20 @@ public class CpChangeActivity extends AppCompatActivity {
         cp1_adapter.clear();
         cp2_adapter.clear();
         cp3_adapter.clear();
+        symbol_adapter.clear();
         noUsedList.clear();
+
+        cp1List.clear();
+        cp2List.clear();
+        cp3List.clear();
+        noUsedList.clear();
+        symbolList.clear();
 
         cp1List = dbQuery.getTableSymbol("일상");
         cp2List = dbQuery.getTableSymbol("음식");
         cp3List = dbQuery.getTableSymbol("도움");
         noUsedList = dbQuery.getNoUsedSymbol();
+        symbolList = dbQuery.getAllSymbol();
 
         for (int i = 0; i < cp1List.size(); i++) {
             cp1_adapter.addItem(symbolList.get(cp1List.get(i)));
@@ -382,7 +390,7 @@ public class CpChangeActivity extends AppCompatActivity {
         for (int i = 0; i < cp3List.size(); i++) {
             cp3_adapter.addItem(symbolList.get(cp3List.get(i)));
         }
-        for (int i = 0; i < noUsedList.size(); i++) {
+        for (int i = 1; i < noUsedList.size(); i++) {
             symbol_adapter.addItem(symbolList.get(noUsedList.get(i)));
         }
         //위 그리드뷰 기본 화면 출력

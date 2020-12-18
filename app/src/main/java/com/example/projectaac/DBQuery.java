@@ -40,15 +40,29 @@ public class DBQuery {
         return symbolName;
     }
     //상징 테이블 전체 cursor로 반환하는 메소드
-    public Cursor getAllSymbol(){
+    public ArrayList<SymbolListItem> getAllSymbol(){
         database = dbManager.getWritableDatabase();
         Cursor cursor = database.rawQuery("SELECT * FROM symbolTB", null);
-        return cursor;
+        ArrayList<SymbolListItem> allSymbol = new ArrayList<>();
+        cursor.moveToFirst();
+        for(int i=0; i<cursor.getCount();i++){
+            allSymbol.add(new SymbolListItem(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4)));
+            if(i != cursor.getCount()-1)cursor.moveToNext();
+        }
+        return allSymbol;
     }
-    public Cursor getNoUsedSymbol(){
+    public ArrayList<Integer> getNoUsedSymbol(){
         database = dbManager.getWritableDatabase();
         Cursor cursor = database.rawQuery("SELECT * FROM symbolTB where used = 0", null);
-        return cursor;
+        ArrayList<Integer> symbolList = new ArrayList<>();
+        cursor.moveToFirst();
+        if(cursor.getCount() > 1) {
+            for (int i = 0; i < cursor.getCount(); i++) {
+                symbolList.add(cursor.getInt(0)-1);
+                if(i != cursor.getCount()-1)cursor.moveToNext();
+            }
+        }
+        return symbolList;
     }
     //cp의 이름을 입력받아 해당 cp의 상징id를 담은 arraylist 반환하는 메소드
     public ArrayList<Integer> getTableSymbol(String cpName){

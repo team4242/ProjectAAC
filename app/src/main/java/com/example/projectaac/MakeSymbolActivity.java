@@ -39,12 +39,13 @@ public class MakeSymbolActivity extends Activity {
 
     DBManager dbManager;
     private GridView symbolGrid;
+    GridSymbolAdapter adapter;
 
 
     private static final int REQUEST_CODE = 0;
 
     private ImageView SelectedImage;
-    private Button btn_gallery, btn_search, btn_AddSymbol;
+    private Button btn_gallery, btn_search, btn_AddSymbol, btn_delete;
     private EditText et_symbolName, et_categoryName;
 
     String symbolName, categoryName;
@@ -54,8 +55,6 @@ public class MakeSymbolActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_symbol);
-
-
 
         //DB 사용할 수 있게 선언
         dbManager = new DBManager(this);
@@ -67,6 +66,7 @@ public class MakeSymbolActivity extends Activity {
         btn_AddSymbol = (Button) findViewById(R.id.btn_AddSymbol);
         et_symbolName = (EditText) findViewById(R.id.et_symbolName);
         et_categoryName = (EditText) findViewById(R.id.et_categoryName);
+        btn_delete = (Button) findViewById(R.id.btn_delete);
 
         //갤러리에서 사진 불러오는 클릭 리스너
         btn_gallery.setOnClickListener(new View.OnClickListener() {
@@ -87,22 +87,26 @@ public class MakeSymbolActivity extends Activity {
                 DBQuery dbquery = new DBQuery(dbManager);
                 symbolName = et_symbolName.getText().toString().trim();
                 categoryName = et_categoryName.getText().toString().trim();
-                //불러온 이미지를 내부저장소에 저장
-                SelectedImage.setDrawingCacheEnabled(true);
-                Bitmap bitmap = SelectedImage.getDrawingCache();
-                String imagePath = saveBitmapToPng(bitmap, symbolName);
-                Toast.makeText(getApplicationContext(), imagePath, Toast.LENGTH_SHORT).show();
-                //데이터베이스에 상징 데이터 저장
+                if(symbolName.isEmpty()) {
+                    Toast.makeText(MakeSymbolActivity.this, "잘못된 입력입니다", Toast.LENGTH_SHORT).show();
+                }else{
+                    //불러온 이미지를 내부저장소에 저장
+                    SelectedImage.setDrawingCacheEnabled(true);
+                    Bitmap bitmap = SelectedImage.getDrawingCache();
+                    String imagePath = saveBitmapToPng(bitmap, symbolName);
+                    Toast.makeText(getApplicationContext(), imagePath, Toast.LENGTH_SHORT).show();
+                    //데이터베이스에 상징 데이터 저장
 
-                //이건 됩니다
-                dbquery.insertSymbol(symbolName, imagePath);
-                Intent intent = getIntent();
-                finish();
-                startActivity((intent));
+                    //이건 됩니다
+                    dbquery.insertSymbol(symbolName, imagePath);
+                    Intent intent = getIntent();
 
-
+                    finish();
+                    startActivity((intent));
+                }
             }
         });
+
         //KAAC에서 상징 검색하는 기능
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,21 +118,14 @@ public class MakeSymbolActivity extends Activity {
         });
         //모든 상징 검색해서 symbolGrid 에 뿌려주는 기능
         symbolGrid = findViewById(R.id.symbolGirdView);
-        final GridSymbolAdapter adapter = new GridSymbolAdapter();
+        adapter = new GridSymbolAdapter();
 
         DBQuery dbquery = new DBQuery(dbManager);
-        Cursor cursor = dbquery.getAllSymbol();
-        if(!dbquery.isSymbolNull()) {   //symbolTB 가 비어있지 않으면
-            cursor.moveToFirst();
-            int symbolNum = cursor.getCount();
-            for (int i = 0; i < symbolNum ; i++) {
-                //0번 상징이 공백이기 때문에 1번 상징부터 시작하도록 함
-                if (i == symbolNum - 1) {
-                    continue;
-                } else {
-                    cursor.moveToNext();
-                }
-                adapter.addItem(new SymbolListItem(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getInt(4)));
+        ArrayList<SymbolListItem> allSymbol = dbquery.getAllSymbol();
+        ArrayList<Integer> noUsedList = dbquery.getNoUsedSymbol();
+        if(noUsedList.size() > 1) {
+            for (int i = 1; i < noUsedList.size(); i++) {
+                adapter.addItem(allSymbol.get(noUsedList.get(i)));
             }
         }
         dbquery.dbClose();
@@ -148,6 +145,15 @@ public class MakeSymbolActivity extends Activity {
 
                 adapter.notifyDataSetChanged();
                 symbolGrid.setAdapter(adapter);
+            }
+        });
+
+
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DBQuery dbquery = new DBQuery(dbManager);
+                dbquery.deleteSymbol(adapter.items.get(adapter.getCheckedItem()).name);
             }
         });
 
