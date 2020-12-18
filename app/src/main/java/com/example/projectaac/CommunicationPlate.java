@@ -41,8 +41,7 @@ public class CommunicationPlate extends AppCompatActivity {
     LinearLayout layout_a,layout_b,layout_c,layout_d,layout_1,layout_2,layout_3,layout_4,layout_5,layout_6,layout_7,layout_8,layout_9,layout_10,layout_11,layout_12,layout_13,layout_14,layout_15,layout_16;
     ImageView image_a,image_b,image_c,image_d,image_1,image_2,image_3,image_4,image_5,image_6,image_7,image_8,image_9,image_10,image_11,image_12,image_13,image_14,image_15,image_16;
     TextView texta,textb,textc,textd,text1,text2,text3,text4,text5,text6,text7,text8,text9,text10,text11,text12,text13,text14,text15,text16;
-    GridView CpGridView, symbolGridView;
-    GridSymbolAdapter adapter;
+
     DBManager dbManager;
 
     @Override

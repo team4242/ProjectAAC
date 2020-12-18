@@ -120,7 +120,7 @@ public class MakeSymbolActivity extends Activity {
         symbolGrid = findViewById(R.id.symbolGirdView);
         adapter = new GridSymbolAdapter();
 
-        DBQuery dbquery = new DBQuery(dbManager);
+        final DBQuery dbquery = new DBQuery(dbManager);
         ArrayList<SymbolListItem> allSymbol = dbquery.getAllSymbol();
         ArrayList<Integer> noUsedList = dbquery.getNoUsedSymbol();
         if(noUsedList.size() > 1) {
@@ -136,7 +136,7 @@ public class MakeSymbolActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position == adapter.getCheckedItem()){
-                    adapter.setCheckedItem(0);
+                    adapter.setCheckedItem(100);
                     adapter.setAdapterChecked(false);
                 }else {
                     adapter.setCheckedItem(position);
@@ -152,8 +152,15 @@ public class MakeSymbolActivity extends Activity {
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DBQuery dbquery = new DBQuery(dbManager);
-                dbquery.deleteSymbol(adapter.items.get(adapter.getCheckedItem()).name);
+                if(adapter.isAdapterChecked()){
+                    String delete_str = adapter.items.get(adapter.getCheckedItem()).name;
+                    dbquery.deleteSymbol(delete_str);
+                    adapter.items.remove(adapter.getCheckedItem());
+                    adapter.setCheckedItem(100);
+                    adapter.setAdapterChecked(false);
+                    Toast.makeText(MakeSymbolActivity.this, "'"+ delete_str+"' 상징을 삭제했습니다.", Toast.LENGTH_SHORT).show();
+                }
+                adapter.notifyDataSetChanged();
             }
         });
 
