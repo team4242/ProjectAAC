@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,17 +21,22 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class CommunicationPlate extends AppCompatActivity {
 
+
+    public TextToSpeech tts;
+    String tts_statement;
     int count = 0, num = 0;
     Button btn_recommand, btn_1, btn_2, btn_3, btn_4, btn_5, btn_number;
-    ImageButton btn_tts;
+    ImageButton btn_tts, btn_speak;
     ImageButton btn_home;
     LinearLayout layout_a,layout_b,layout_c,layout_d,layout_1,layout_2,layout_3,layout_4,layout_5,layout_6,layout_7,layout_8,layout_9,layout_10,layout_11,layout_12,layout_13,layout_14,layout_15,layout_16;
     ImageView image_a,image_b,image_c,image_d,image_1,image_2,image_3,image_4,image_5,image_6,image_7,image_8,image_9,image_10,image_11,image_12,image_13,image_14,image_15,image_16;
@@ -44,6 +50,18 @@ public class CommunicationPlate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_communication_plate);
 
+
+        tts = new TextToSpeech(CommunicationPlate.this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status ==TextToSpeech.SUCCESS){
+                    int result = tts.setLanguage(Locale.KOREA);
+                    if(result ==TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED){
+                        Toast.makeText(CommunicationPlate.this,"지원하지 않는 언어입니다",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
         dbManager = new DBManager(this);
 
         btn_number = (Button)findViewById(R.id.btn_number);
@@ -204,6 +222,15 @@ public class CommunicationPlate extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        btn_speak = (ImageButton)findViewById(R.id.btn_speak);
+        btn_speak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tts_statement = (String)texta.getText() + (String)textb.getText() + (String)textc.getText() + (String)textd.getText();
+                tts.speak(tts_statement, TextToSpeech.QUEUE_FLUSH, null);
             }
         });
 
