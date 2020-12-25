@@ -2,7 +2,9 @@ package com.example.projectaac;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -12,14 +14,14 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -40,47 +42,45 @@ public class CommunicationPlate extends AppCompatActivity {
     ImageView image_a,image_b,image_c,image_d,image_1,image_2,image_3,image_4,image_5,image_6,image_7,image_8,image_9,image_10,image_11,image_12,image_13,image_14,image_15,image_16;
     TextView texta,textb,textc,textd,text1,text2,text3,text4,text5,text6,text7,text8,text9,text10,text11,text12,text13,text14,text15,text16;
     ArrayList<SymbolListItem> cursor;
-    ArrayList<Integer> symbolList1, symbolList2, symbolList3;
     ArrayList<Drawable> draw1, draw2, draw3;
+    ArrayList<Integer> symbolList1, symbolList2, symbolList3;
     DBManager dbManager;
-
-
+    DBQuery dbQuery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_communication_plate);
 
-
         dbManager = new DBManager(this);
-        DBQuery dbQuery = new DBQuery(dbManager);
-
-        symbolList1 = dbQuery.getTableSymbol("일상");  //일상 테이블의 상징id 저장
-        symbolList2 = dbQuery.getTableSymbol("음식");  //일상 테이블의 상징id 저장
-        symbolList3 = dbQuery.getTableSymbol("도움");  //일상 테이블의 상징id 저장
-        cursor = dbQuery.getAllSymbol(); //모든 심볼 불러옴
+        dbQuery = new DBQuery(dbManager);
+        symbolList1 = dbQuery.getTableSymbol("일상");
+        symbolList2 = dbQuery.getTableSymbol("음식");
+        symbolList3 = dbQuery.getTableSymbol("도움");
+        cursor= dbQuery.getAllSymbol();
 
         draw1 = new ArrayList<>();
         draw2 = new ArrayList<>();
         draw3 = new ArrayList<>();
-        for(int i=0; i<16; i++) {
+        for(int i =0; i<16; i++){
             draw1.add(Drawable.createFromPath(cursor.get(symbolList1.get(i)).getImagePath()));
             draw2.add(Drawable.createFromPath(cursor.get(symbolList2.get(i)).getImagePath()));
             draw3.add(Drawable.createFromPath(cursor.get(symbolList3.get(i)).getImagePath()));
         }
+
 
         tts = new TextToSpeech(CommunicationPlate.this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 if(status ==TextToSpeech.SUCCESS){
                     int result = tts.setLanguage(Locale.KOREA);
-                    tts.setSpeechRate(0.75f);
                     if(result ==TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED){
                         Toast.makeText(CommunicationPlate.this,"지원하지 않는 언어입니다",Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
+
 
         btn_number = (Button)findViewById(R.id.btn_number);
         btn_number.setOnClickListener(new View.OnClickListener() {
