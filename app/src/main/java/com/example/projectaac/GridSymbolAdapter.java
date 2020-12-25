@@ -1,8 +1,6 @@
 package com.example.projectaac;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,7 +66,7 @@ public class GridSymbolAdapter extends BaseAdapter {
 
         //Bitmap imgBitmap = BitmapFactory.decodeFile(listItem.getImagePath());
         //imageView.setImageBitmap(imgBitmap);
-        //nameView.setText(listItem.getName());
+        nameView.setText(listItem.getName());
         Glide.with(context).load(listItem.getImagePath()).into(imageView);
 
         //adapter의 원소를 클릭하면 배경색깔 초록색으로, 초록색을 다시 클릭하면 흰색으로,

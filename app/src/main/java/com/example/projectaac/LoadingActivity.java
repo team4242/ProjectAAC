@@ -92,9 +92,6 @@ public class LoadingActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-
-
-
     }
     private String saveBitmapToPng(Bitmap bitmap, String name) {
 

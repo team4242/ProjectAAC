@@ -1,33 +1,19 @@
 package com.example.projectaac;
 
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.app.Activity;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridLayout;
 import android.widget.GridView;
-import android.widget.ImageButton;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import org.xmlpull.v1.XmlPullParser;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -46,7 +32,7 @@ public class MakeSymbolActivity extends Activity {
 
     private ImageView SelectedImage;
     private Button btn_gallery, btn_search, btn_AddSymbol, btn_delete;
-    private EditText et_symbolName, et_categoryName;
+    private EditText et_symbolName;
 
     String symbolName, categoryName;
 
@@ -65,7 +51,6 @@ public class MakeSymbolActivity extends Activity {
         btn_search = (Button) findViewById(R.id.btn_search);
         btn_AddSymbol = (Button) findViewById(R.id.btn_AddSymbol);
         et_symbolName = (EditText) findViewById(R.id.et_symbolName);
-        et_categoryName = (EditText) findViewById(R.id.et_categoryName);
         btn_delete = (Button) findViewById(R.id.btn_delete);
 
         //갤러리에서 사진 불러오는 클릭 리스너
@@ -86,7 +71,6 @@ public class MakeSymbolActivity extends Activity {
             public void onClick(View v) {
                 DBQuery dbquery = new DBQuery(dbManager);
                 symbolName = et_symbolName.getText().toString().trim();
-                categoryName = et_categoryName.getText().toString().trim();
                 if(symbolName.isEmpty()) {
                     Toast.makeText(MakeSymbolActivity.this, "잘못된 입력입니다", Toast.LENGTH_SHORT).show();
                 }else{

@@ -2,9 +2,7 @@ package com.example.projectaac;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -14,9 +12,7 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -35,14 +31,17 @@ public class CommunicationPlate extends AppCompatActivity {
     public TextToSpeech tts;
     String tts_statement;
     int count = 0, num = 0;
-    Button btn_recommand, btn_1, btn_2, btn_3, btn_4, btn_5, btn_number;
+    Button btn_recommand, btn_3, btn_4, btn_5, btn_number;
     ImageButton btn_tts, btn_speak;
     ImageButton btn_home;
     LinearLayout layout_a,layout_b,layout_c,layout_d,layout_1,layout_2,layout_3,layout_4,layout_5,layout_6,layout_7,layout_8,layout_9,layout_10,layout_11,layout_12,layout_13,layout_14,layout_15,layout_16;
     ImageView image_a,image_b,image_c,image_d,image_1,image_2,image_3,image_4,image_5,image_6,image_7,image_8,image_9,image_10,image_11,image_12,image_13,image_14,image_15,image_16;
     TextView texta,textb,textc,textd,text1,text2,text3,text4,text5,text6,text7,text8,text9,text10,text11,text12,text13,text14,text15,text16;
-
+    ArrayList<SymbolListItem> cursor;
+    ArrayList<Integer> symbolList1, symbolList2, symbolList3;
     DBManager dbManager;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,18 +49,19 @@ public class CommunicationPlate extends AppCompatActivity {
         setContentView(R.layout.activity_communication_plate);
 
 
+
         tts = new TextToSpeech(CommunicationPlate.this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 if(status ==TextToSpeech.SUCCESS){
                     int result = tts.setLanguage(Locale.KOREA);
+                    tts.setSpeechRate(0.75f);
                     if(result ==TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED){
                         Toast.makeText(CommunicationPlate.this,"지원하지 않는 언어입니다",Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
-        dbManager = new DBManager(this);
 
         btn_number = (Button)findViewById(R.id.btn_number);
         btn_number.setOnClickListener(new View.OnClickListener() {
@@ -228,280 +228,214 @@ public class CommunicationPlate extends AppCompatActivity {
         btn_speak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tts_statement = (String)texta.getText() + (String)textb.getText() + (String)textc.getText() + (String)textd.getText();
+                String a = (String) texta.getText();
+                String b = (String) textb.getText();
+                String c = (String) textc.getText();
+                String d = (String) textd.getText();
+                tts_statement = a+b+c+d;
                 tts.speak(tts_statement, TextToSpeech.QUEUE_FLUSH, null);
             }
         });
 
-        btn_1 = (Button)findViewById(R.id.btn_1);
-        btn_1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        dbManager = new DBManager(this);
+        DBQuery dbQuery = new DBQuery(dbManager);
 
-                if(num==1) {
-                    texta.setText("");
-                    textb.setText("");
-                    textc.setText("");
-                    textd.setText("");
-                    image_a.setImageResource(0);
-                    image_b.setImageResource(0);
-                    image_c.setImageResource(0);
-                    image_d.setImageResource(0);
-                    num=0;
-                    count=0;
+        symbolList1 = dbQuery.getTableSymbol("일상");  //일상 테이블의 상징id 저장
+        symbolList2 = dbQuery.getTableSymbol("음식");  //일상 테이블의 상징id 저장
+        symbolList3 = dbQuery.getTableSymbol("도움");  //일상 테이블의 상징id 저장
+        cursor = dbQuery.getAllSymbol(); //모든 심볼 불러옴
 
-                    int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,90,getResources().getDisplayMetrics());
-                    image_1.getLayoutParams().height = width;
-                    image_2.getLayoutParams().height = width;
-                    image_3.getLayoutParams().height = width;
-                    image_4.getLayoutParams().height = width;
-                    image_5.getLayoutParams().height = width;
-                    image_6.getLayoutParams().height = width;
-                    image_7.getLayoutParams().height = width;
-                    image_8.getLayoutParams().height = width;
-                    image_9.getLayoutParams().height = width;
-                    image_10.getLayoutParams().height = width;
-                    image_11.getLayoutParams().height = width;
-                    image_12.getLayoutParams().height = width;
-                    image_13.getLayoutParams().height = width;
-                    image_14.getLayoutParams().height = width;
-                    image_15.getLayoutParams().height = width;
-                    image_16.getLayoutParams().height = width;
-                    image_a.getLayoutParams().height = width;
-                    image_b.getLayoutParams().height = width;
-                    image_c.getLayoutParams().height = width;
-                    image_d.getLayoutParams().height = width;
+        texta = (TextView)findViewById(R.id.texta);
+        textb = (TextView)findViewById(R.id.textb);
+        textc = (TextView)findViewById(R.id.textc);
+        textd = (TextView)findViewById(R.id.textd);
+        text1 = (TextView)findViewById(R.id.text1);
+        text2 = (TextView)findViewById(R.id.text2);
+        text3 = (TextView)findViewById(R.id.text3);
+        text4 = (TextView)findViewById(R.id.text4);
+        text5 = (TextView)findViewById(R.id.text5);
+        text6 = (TextView)findViewById(R.id.text6);
+        text7 = (TextView)findViewById(R.id.text7);
+        text8 = (TextView)findViewById(R.id.text8);
+        text9 = (TextView)findViewById(R.id.text9);
+        text10 = (TextView)findViewById(R.id.text10);
+        text11 = (TextView)findViewById(R.id.text11);
+        text12 = (TextView)findViewById(R.id.text12);
+        text13 = (TextView)findViewById(R.id.text13);
+        text14 = (TextView)findViewById(R.id.text14);
+        text15 = (TextView)findViewById(R.id.text15);
+        text16 = (TextView)findViewById(R.id.text16);
 
-                    int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,20,getResources().getDisplayMetrics());
-                    text1.getLayoutParams().height=height;
-                    text2.getLayoutParams().height=height;
-                    text3.getLayoutParams().height=height;
-                    text4.getLayoutParams().height=height;
-                    text5.getLayoutParams().height=height;
-                    text6.getLayoutParams().height=height;
-                    text7.getLayoutParams().height=height;
-                    text8.getLayoutParams().height=height;
-                    text9.getLayoutParams().height=height;
-                    text10.getLayoutParams().height=height;
-                    text11.getLayoutParams().height=height;
-                    text12.getLayoutParams().height=height;
-                    text13.getLayoutParams().height=height;
-                    text14.getLayoutParams().height=height;
-                    text15.getLayoutParams().height=height;
-                    text16.getLayoutParams().height=height;
-                    texta.getLayoutParams().height=height;
-                    textb.getLayoutParams().height=height;
-                    textc.getLayoutParams().height=height;
-                    textd.getLayoutParams().height=height;
+        image_a =(ImageView)findViewById(R.id.image_a);
+        image_b =(ImageView)findViewById(R.id.image_b);
+        image_c =(ImageView)findViewById(R.id.image_c);
+        image_d =(ImageView)findViewById(R.id.image_d);
+        image_1 =(ImageView)findViewById(R.id.image_1);
+        image_2 =(ImageView)findViewById(R.id.image_2);
+        image_3 =(ImageView)findViewById(R.id.image_3);
+        image_4 =(ImageView)findViewById(R.id.image_4);
+        image_5 =(ImageView)findViewById(R.id.image_5);
+        image_6 =(ImageView)findViewById(R.id.image_6);
+        image_7 =(ImageView)findViewById(R.id.image_7);
+        image_8 =(ImageView)findViewById(R.id.image_8);
+        image_9 =(ImageView)findViewById(R.id.image_9);
+        image_10 =(ImageView)findViewById(R.id.image_10);
+        image_11 =(ImageView)findViewById(R.id.image_11);
+        image_12 =(ImageView)findViewById(R.id.image_12);
+        image_13 =(ImageView)findViewById(R.id.image_13);
+        image_14 =(ImageView)findViewById(R.id.image_14);
+        image_15 =(ImageView)findViewById(R.id.image_15);
+        image_16 =(ImageView)findViewById(R.id.image_16);
 
-                    text1.setTextSize(14);
-                    text2.setTextSize(14);
-                    text3.setTextSize(14);
-                    text4.setTextSize(14);
-                    text5.setTextSize(14);
-                    text6.setTextSize(14);
-                    text7.setTextSize(14);
-                    text8.setTextSize(14);
-                    text9.setTextSize(14);
-                    text10.setTextSize(14);
-                    text11.setTextSize(14);
-                    text12.setTextSize(14);
-                    text13.setTextSize(14);
-                    text14.setTextSize(14);
-                    text15.setTextSize(14);
-                    text16.setTextSize(14);
-                    texta.setTextSize(14);
-                    textb.setTextSize(14);
-                    textc.setTextSize(14);
-                    textd.setTextSize(14);
+        layout_a = (LinearLayout)findViewById(R.id.layout_a);
+        layout_b = (LinearLayout)findViewById(R.id.layout_b);
+        layout_c = (LinearLayout)findViewById(R.id.layout_c);
+        layout_d = (LinearLayout)findViewById(R.id.layout_d);
+        layout_1 = (LinearLayout)findViewById(R.id.layout_1);
+        layout_2 = (LinearLayout)findViewById(R.id.layout_2);
+        layout_3= (LinearLayout)findViewById(R.id.layout_3);
+        layout_4 = (LinearLayout)findViewById(R.id.layout_4);
+        layout_5 = (LinearLayout)findViewById(R.id.layout_5);
+        layout_6 = (LinearLayout)findViewById(R.id.layout_6);
+        layout_7 = (LinearLayout)findViewById(R.id.layout_7);
+        layout_8 = (LinearLayout)findViewById(R.id.layout_8);
+        layout_9 = (LinearLayout)findViewById(R.id.layout_9);
+        layout_10 = (LinearLayout)findViewById(R.id.layout_10);
+        layout_11 = (LinearLayout)findViewById(R.id.layout_11);
+        layout_12 = (LinearLayout)findViewById(R.id.layout_12);
+        layout_13 = (LinearLayout)findViewById(R.id.layout_13);
+        layout_14 = (LinearLayout)findViewById(R.id.layout_14);
+        layout_15 = (LinearLayout)findViewById(R.id.layout_15);
+        layout_16 = (LinearLayout)findViewById(R.id.layout_16);
 
-                }
+        texta.setText("");
+        textb.setText("");
+        textc.setText("");
+        textd.setText("");
+        image_a.setImageResource(0);
+        image_b.setImageResource(0);
+        image_c.setImageResource(0);
+        image_d.setImageResource(0);
+        num=0;
+        count=0;
 
-                image_1.setImageResource(R.drawable.an_nyeong_ha_se_yo_002_);
-                image_2.setImageResource(R.drawable.cin_gu_);
-                image_3.setImageResource(R.drawable.joh_a_yo_002_);
-                image_4.setImageResource(R.drawable.silh_eo_yo_);
-                image_5.setImageResource(R.drawable.gi_bun_joh_a_yo_);
-                image_6.setImageResource(R.drawable.ju_se_yo_002_);
-                image_7.setImageResource(R.drawable.mul_002_1);
-                image_8.setImageResource(R.drawable.u_yu_003_);
-                image_9.setImageResource(R.drawable.mu_seun_mal_in_ji_jal_mo_reu_gess_eo_yo_);
-                image_10.setImageResource(R.drawable.geod_da_);
-                image_11.setImageResource(R.drawable.gwa_ja_);
-                image_12.setImageResource(R.drawable.gyul_);
-                image_13.setImageResource(R.drawable.hag_gyo_001_);
-                image_14.setImageResource(R.drawable.meog_eo_yo_);
-                image_15.setImageResource(R.drawable.sig_sa_ha_gi_);
-                image_16.setImageResource(R.drawable.yi_sa_seon_saeng_nim_002_);
-                text1.setText("안녕하세요");
-                text2.setText("친구");
-                text3.setText("좋아요");
-                text4.setText("싫어요");
-                text5.setText("기분좋아요");
-                text6.setText("주세요");
-                text7.setText("물");
-                text8.setText("우유");
-                text9.setText("모르겠어요");
-                text10.setText("걸어가요");
-                text11.setText("간식");
-                text12.setText("과일");
-                text13.setText("학교");
-                text14.setText("먹어요");
-                text15.setText("수저");
-                text16.setText("의사선생님");
-                layout_1.setBackgroundColor(Color.WHITE);
-                layout_2.setBackgroundColor(Color.WHITE);
-                layout_3.setBackgroundColor(Color.WHITE);
-                layout_4.setBackgroundColor(Color.WHITE);
-                layout_5.setBackgroundColor(Color.WHITE);
-                layout_6.setBackgroundColor(Color.WHITE);
-                layout_7.setBackgroundColor(Color.WHITE);
-                layout_8.setBackgroundColor(Color.WHITE);
-                layout_9.setBackgroundColor(Color.WHITE);
-                layout_10.setBackgroundColor(Color.WHITE);
-                layout_11.setBackgroundColor(Color.WHITE);
-                layout_12.setBackgroundColor(Color.WHITE);
-                layout_13.setBackgroundColor(Color.WHITE);
-                layout_14.setBackgroundColor(Color.WHITE);
-                layout_15.setBackgroundColor(Color.WHITE);
-                layout_16.setBackgroundColor(Color.WHITE);
-            }
-        });
+        int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,90,getResources().getDisplayMetrics());
+        image_1.getLayoutParams().height = width;
+        image_2.getLayoutParams().height = width;
+        image_3.getLayoutParams().height = width;
+        image_4.getLayoutParams().height = width;
+        image_5.getLayoutParams().height = width;
+        image_6.getLayoutParams().height = width;
+        image_7.getLayoutParams().height = width;
+        image_8.getLayoutParams().height = width;
+        image_9.getLayoutParams().height = width;
+        image_10.getLayoutParams().height = width;
+        image_11.getLayoutParams().height = width;
+        image_12.getLayoutParams().height = width;
+        image_13.getLayoutParams().height = width;
+        image_14.getLayoutParams().height = width;
+        image_15.getLayoutParams().height = width;
+        image_16.getLayoutParams().height = width;
+        image_a.getLayoutParams().height = width;
+        image_b.getLayoutParams().height = width;
+        image_c.getLayoutParams().height = width;
+        image_d.getLayoutParams().height = width;
 
-        btn_2 = (Button)findViewById(R.id.btn_2);
-        btn_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,20,getResources().getDisplayMetrics());
+        text1.getLayoutParams().height=height;
+        text2.getLayoutParams().height=height;
+        text3.getLayoutParams().height=height;
+        text4.getLayoutParams().height=height;
+        text5.getLayoutParams().height=height;
+        text6.getLayoutParams().height=height;
+        text7.getLayoutParams().height=height;
+        text8.getLayoutParams().height=height;
+        text9.getLayoutParams().height=height;
+        text10.getLayoutParams().height=height;
+        text11.getLayoutParams().height=height;
+        text12.getLayoutParams().height=height;
+        text13.getLayoutParams().height=height;
+        text14.getLayoutParams().height=height;
+        text15.getLayoutParams().height=height;
+        text16.getLayoutParams().height=height;
+        texta.getLayoutParams().height=height;
+        textb.getLayoutParams().height=height;
+        textc.getLayoutParams().height=height;
+        textd.getLayoutParams().height=height;
 
-                if(num==1) {
-                    texta.setText("");
-                    textb.setText("");
-                    textc.setText("");
-                    textd.setText("");
-                    image_a.setImageResource(0);
-                    image_b.setImageResource(0);
-                    image_c.setImageResource(0);
-                    image_d.setImageResource(0);
-                    num=0;
-                    count=0;
+        text1.setTextSize(14);
+        text2.setTextSize(14);
+        text3.setTextSize(14);
+        text4.setTextSize(14);
+        text5.setTextSize(14);
+        text6.setTextSize(14);
+        text7.setTextSize(14);
+        text8.setTextSize(14);
+        text9.setTextSize(14);
+        text10.setTextSize(14);
+        text11.setTextSize(14);
+        text12.setTextSize(14);
+        text13.setTextSize(14);
+        text14.setTextSize(14);
+        text15.setTextSize(14);
+        text16.setTextSize(14);
+        texta.setTextSize(14);
+        textb.setTextSize(14);
+        textc.setTextSize(14);
+        textd.setTextSize(14);
 
-                    int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,90,getResources().getDisplayMetrics());
-                    image_1.getLayoutParams().height = width;
-                    image_2.getLayoutParams().height = width;
-                    image_3.getLayoutParams().height = width;
-                    image_4.getLayoutParams().height = width;
-                    image_5.getLayoutParams().height = width;
-                    image_6.getLayoutParams().height = width;
-                    image_7.getLayoutParams().height = width;
-                    image_8.getLayoutParams().height = width;
-                    image_9.getLayoutParams().height = width;
-                    image_10.getLayoutParams().height = width;
-                    image_11.getLayoutParams().height = width;
-                    image_12.getLayoutParams().height = width;
-                    image_13.getLayoutParams().height = width;
-                    image_14.getLayoutParams().height = width;
-                    image_15.getLayoutParams().height = width;
-                    image_16.getLayoutParams().height = width;
-                    image_a.getLayoutParams().height = width;
-                    image_b.getLayoutParams().height = width;
-                    image_c.getLayoutParams().height = width;
-                    image_d.getLayoutParams().height = width;
 
-                    int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,20,getResources().getDisplayMetrics());
-                    text1.getLayoutParams().height=height;
-                    text2.getLayoutParams().height=height;
-                    text3.getLayoutParams().height=height;
-                    text4.getLayoutParams().height=height;
-                    text5.getLayoutParams().height=height;
-                    text6.getLayoutParams().height=height;
-                    text7.getLayoutParams().height=height;
-                    text8.getLayoutParams().height=height;
-                    text9.getLayoutParams().height=height;
-                    text10.getLayoutParams().height=height;
-                    text11.getLayoutParams().height=height;
-                    text12.getLayoutParams().height=height;
-                    text13.getLayoutParams().height=height;
-                    text14.getLayoutParams().height=height;
-                    text15.getLayoutParams().height=height;
-                    text16.getLayoutParams().height=height;
-                    texta.getLayoutParams().height=height;
-                    textb.getLayoutParams().height=height;
-                    textc.getLayoutParams().height=height;
-                    textd.getLayoutParams().height=height;
+        text1.setText(cursor.get(symbolList1.get(0)).getName());
+        image_1.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(0)).getImagePath()));
+        text2.setText(cursor.get(symbolList1.get(1)).getName());
+        image_2.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(1)).getImagePath()));
+        text3.setText(cursor.get(symbolList1.get(2)).getName());
+        image_3.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(2)).getImagePath()));
+        text4.setText(cursor.get(symbolList1.get(3)).getName());
+        image_4.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(3)).getImagePath()));
+        text5.setText(cursor.get(symbolList1.get(4)).getName());
+        image_5.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(4)).getImagePath()));
+        text6.setText(cursor.get(symbolList1.get(5)).getName());
+        image_6.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(5)).getImagePath()));
+        text7.setText(cursor.get(symbolList1.get(6)).getName());
+        image_7.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(6)).getImagePath()));
+        text8.setText(cursor.get(symbolList1.get(7)).getName());
+        image_8.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(7)).getImagePath()));
+        text9.setText(cursor.get(symbolList1.get(8)).getName());
+        image_9.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(8)).getImagePath()));
+        text10.setText(cursor.get(symbolList1.get(9)).getName());
+        image_10.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(9)).getImagePath()));
+        text11.setText(cursor.get(symbolList1.get(10)).getName());
+        image_11.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(10)).getImagePath()));
+        text12.setText(cursor.get(symbolList1.get(11)).getName());
+        image_12.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(11)).getImagePath()));
+        text13.setText(cursor.get(symbolList1.get(12)).getName());
+        image_13.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(12)).getImagePath()));
+        text14.setText(cursor.get(symbolList1.get(13)).getName());
+        image_14.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(13)).getImagePath()));
+        text15.setText(cursor.get(symbolList1.get(14)).getName());
+        image_15.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(14)).getImagePath()));
+        text16.setText(cursor.get(symbolList1.get(15)).getName());
+        image_16.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(15)).getImagePath()));
 
-                    text1.setTextSize(14);
-                    text2.setTextSize(14);
-                    text3.setTextSize(14);
-                    text4.setTextSize(14);
-                    text5.setTextSize(14);
-                    text6.setTextSize(14);
-                    text7.setTextSize(14);
-                    text8.setTextSize(14);
-                    text9.setTextSize(14);
-                    text10.setTextSize(14);
-                    text11.setTextSize(14);
-                    text12.setTextSize(14);
-                    text13.setTextSize(14);
-                    text14.setTextSize(14);
-                    text15.setTextSize(14);
-                    text16.setTextSize(14);
-                    texta.setTextSize(14);
-                    textb.setTextSize(14);
-                    textc.setTextSize(14);
-                    textd.setTextSize(14);
 
-                }
+        layout_1.setBackgroundColor(Color.WHITE);
+        layout_2.setBackgroundColor(Color.WHITE);
+        layout_3.setBackgroundColor(Color.WHITE);
+        layout_4.setBackgroundColor(Color.WHITE);
+        layout_5.setBackgroundColor(Color.WHITE);
+        layout_6.setBackgroundColor(Color.WHITE);
+        layout_7.setBackgroundColor(Color.WHITE);
+        layout_8.setBackgroundColor(Color.WHITE);
+        layout_9.setBackgroundColor(Color.WHITE);
+        layout_10.setBackgroundColor(Color.WHITE);
+        layout_11.setBackgroundColor(Color.WHITE);
+        layout_12.setBackgroundColor(Color.WHITE);
+        layout_13.setBackgroundColor(Color.WHITE);
+        layout_14.setBackgroundColor(Color.WHITE);
+        layout_15.setBackgroundColor(Color.WHITE);
+        layout_16.setBackgroundColor(Color.WHITE);
 
-                image_5.setImageResource(R.drawable.an_nyeong_ha_se_yo_002_);
-                image_6.setImageResource(R.drawable.cin_gu_);
-                image_7.setImageResource(R.drawable.joh_a_yo_002_);
-                image_8.setImageResource(R.drawable.silh_eo_yo_);
-                image_9.setImageResource(R.drawable.gi_bun_joh_a_yo_);
-                image_10.setImageResource(R.drawable.ju_se_yo_002_);
-                image_11.setImageResource(R.drawable.mul_002_1);
-                image_12.setImageResource(R.drawable.u_yu_003_);
-                image_13.setImageResource(R.drawable.mu_seun_mal_in_ji_jal_mo_reu_gess_eo_yo_);
-                image_14.setImageResource(R.drawable.geod_da_);
-                image_15.setImageResource(R.drawable.gwa_ja_);
-                image_16.setImageResource(R.drawable.gyul_);
-                image_1.setImageResource(R.drawable.hag_gyo_001_);
-                image_2.setImageResource(R.drawable.meog_eo_yo_);
-                image_3.setImageResource(R.drawable.sig_sa_ha_gi_);
-                image_4.setImageResource(R.drawable.yi_sa_seon_saeng_nim_002_);
-                text5.setText("안녕하세요");
-                text6.setText("친구");
-                text7.setText("좋아요");
-                text8.setText("싫어요");
-                text9.setText("기분좋아요");
-                text10.setText("주세요");
-                text11.setText("물");
-                text12.setText("우유");
-                text13.setText("모르겠어요");
-                text14.setText("걸어가요");
-                text15.setText("간식");
-                text16.setText("과일");
-                text1.setText("학교");
-                text2.setText("먹어요");
-                text3.setText("수저");
-                text4.setText("의사선생님");
-                layout_1.setBackgroundColor(Color.WHITE);
-                layout_2.setBackgroundColor(Color.WHITE);
-                layout_3.setBackgroundColor(Color.WHITE);
-                layout_4.setBackgroundColor(Color.WHITE);
-                layout_5.setBackgroundColor(Color.WHITE);
-                layout_6.setBackgroundColor(Color.WHITE);
-                layout_7.setBackgroundColor(Color.WHITE);
-                layout_8.setBackgroundColor(Color.WHITE);
-                layout_9.setBackgroundColor(Color.WHITE);
-                layout_10.setBackgroundColor(Color.WHITE);
-                layout_11.setBackgroundColor(Color.WHITE);
-                layout_12.setBackgroundColor(Color.WHITE);
-                layout_13.setBackgroundColor(Color.WHITE);
-                layout_14.setBackgroundColor(Color.WHITE);
-                layout_15.setBackgroundColor(Color.WHITE);
-                layout_16.setBackgroundColor(Color.WHITE);
-            }
-        });
 
         btn_3 = (Button)findViewById(R.id.btn_3);
         btn_3.setOnClickListener(new View.OnClickListener() {
@@ -588,45 +522,40 @@ public class CommunicationPlate extends AppCompatActivity {
                 }
 
                 //각 버튼에 해당하는 테이블의 symbol을 불러와서 출력하는 기능
-                DBQuery dbQuery = new DBQuery(dbManager);
-                ArrayList<Integer> symbolList = new ArrayList<Integer>();
-                ArrayList<SymbolListItem> cursor = new ArrayList<>();
-                symbolList = dbQuery.getTableSymbol("일상");  //일상 테이블의 상징id 저장
-                cursor = dbQuery.getAllSymbol(); //모든 심볼 불러옴
 
 
-                text1.setText(cursor.get(symbolList.get(0)).getName());
-                image_1.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(0)).getImagePath()));
-                text2.setText(cursor.get(symbolList.get(1)).getName());
-                image_2.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(1)).getImagePath()));
-                text3.setText(cursor.get(symbolList.get(2)).getName());
-                image_3.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(2)).getImagePath()));
-                text4.setText(cursor.get(symbolList.get(3)).getName());
-                image_4.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(3)).getImagePath()));
-                text5.setText(cursor.get(symbolList.get(4)).getName());
-                image_5.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(4)).getImagePath()));
-                text6.setText(cursor.get(symbolList.get(5)).getName());
-                image_6.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(5)).getImagePath()));
-                text7.setText(cursor.get(symbolList.get(6)).getName());
-                image_7.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(6)).getImagePath()));
-                text8.setText(cursor.get(symbolList.get(7)).getName());
-                image_8.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(7)).getImagePath()));
-                text9.setText(cursor.get(symbolList.get(8)).getName());
-                image_9.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(8)).getImagePath()));
-                text10.setText(cursor.get(symbolList.get(9)).getName());
-                image_10.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(9)).getImagePath()));
-                text11.setText(cursor.get(symbolList.get(10)).getName());
-                image_11.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(10)).getImagePath()));
-                text12.setText(cursor.get(symbolList.get(11)).getName());
-                image_12.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(11)).getImagePath()));
-                text13.setText(cursor.get(symbolList.get(12)).getName());
-                image_13.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(12)).getImagePath()));
-                text14.setText(cursor.get(symbolList.get(13)).getName());
-                image_14.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(13)).getImagePath()));
-                text15.setText(cursor.get(symbolList.get(14)).getName());
-                image_15.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(14)).getImagePath()));
-                text16.setText(cursor.get(symbolList.get(15)).getName());
-                image_16.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(15)).getImagePath()));
+                text1.setText(cursor.get(symbolList1.get(0)).getName());
+                image_1.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(0)).getImagePath()));
+                text2.setText(cursor.get(symbolList1.get(1)).getName());
+                image_2.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(1)).getImagePath()));
+                text3.setText(cursor.get(symbolList1.get(2)).getName());
+                image_3.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(2)).getImagePath()));
+                text4.setText(cursor.get(symbolList1.get(3)).getName());
+                image_4.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(3)).getImagePath()));
+                text5.setText(cursor.get(symbolList1.get(4)).getName());
+                image_5.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(4)).getImagePath()));
+                text6.setText(cursor.get(symbolList1.get(5)).getName());
+                image_6.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(5)).getImagePath()));
+                text7.setText(cursor.get(symbolList1.get(6)).getName());
+                image_7.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(6)).getImagePath()));
+                text8.setText(cursor.get(symbolList1.get(7)).getName());
+                image_8.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(7)).getImagePath()));
+                text9.setText(cursor.get(symbolList1.get(8)).getName());
+                image_9.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(8)).getImagePath()));
+                text10.setText(cursor.get(symbolList1.get(9)).getName());
+                image_10.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(9)).getImagePath()));
+                text11.setText(cursor.get(symbolList1.get(10)).getName());
+                image_11.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(10)).getImagePath()));
+                text12.setText(cursor.get(symbolList1.get(11)).getName());
+                image_12.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(11)).getImagePath()));
+                text13.setText(cursor.get(symbolList1.get(12)).getName());
+                image_13.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(12)).getImagePath()));
+                text14.setText(cursor.get(symbolList1.get(13)).getName());
+                image_14.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(13)).getImagePath()));
+                text15.setText(cursor.get(symbolList1.get(14)).getName());
+                image_15.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(14)).getImagePath()));
+                text16.setText(cursor.get(symbolList1.get(15)).getName());
+                image_16.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(15)).getImagePath()));
 
 
                 layout_1.setBackgroundColor(Color.WHITE);
@@ -732,43 +661,40 @@ public class CommunicationPlate extends AppCompatActivity {
 
                 }
                 //각 버튼에 해당하는 테이블의 symbol을 불러와서 출력하는 기능
-                DBQuery dbQuery = new DBQuery(dbManager);
-                ArrayList<Integer> symbolList = new ArrayList<Integer>();
-                ArrayList<SymbolListItem> cursor = new ArrayList<>();
-                symbolList = dbQuery.getTableSymbol("음식");  //일상 테이블의 상징id 저장
-                cursor = dbQuery.getAllSymbol(); //모든 심볼 불러옴
-                text1.setText(cursor.get(symbolList.get(0)).getName());
-                image_1.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(0)).getImagePath()));
-                text2.setText(cursor.get(symbolList.get(1)).getName());
-                image_2.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(1)).getImagePath()));
-                text3.setText(cursor.get(symbolList.get(2)).getName());
-                image_3.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(2)).getImagePath()));
-                text4.setText(cursor.get(symbolList.get(3)).getName());
-                image_4.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(3)).getImagePath()));
-                text5.setText(cursor.get(symbolList.get(4)).getName());
-                image_5.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(4)).getImagePath()));
-                text6.setText(cursor.get(symbolList.get(5)).getName());
-                image_6.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(5)).getImagePath()));
-                text7.setText(cursor.get(symbolList.get(6)).getName());
-                image_7.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(6)).getImagePath()));
-                text8.setText(cursor.get(symbolList.get(7)).getName());
-                image_8.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(7)).getImagePath()));
-                text9.setText(cursor.get(symbolList.get(8)).getName());
-                image_9.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(8)).getImagePath()));
-                text10.setText(cursor.get(symbolList.get(9)).getName());
-                image_10.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(9)).getImagePath()));
-                text11.setText(cursor.get(symbolList.get(10)).getName());
-                image_11.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(10)).getImagePath()));
-                text12.setText(cursor.get(symbolList.get(11)).getName());
-                image_12.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(11)).getImagePath()));
-                text13.setText(cursor.get(symbolList.get(12)).getName());
-                image_13.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(12)).getImagePath()));
-                text14.setText(cursor.get(symbolList.get(13)).getName());
-                image_14.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(13)).getImagePath()));
-                text15.setText(cursor.get(symbolList.get(14)).getName());
-                image_15.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(14)).getImagePath()));
-                text16.setText(cursor.get(symbolList.get(15)).getName());
-                image_16.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(15)).getImagePath()));
+
+
+                text1.setText(cursor.get(symbolList2.get(0)).getName());
+                image_1.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(0)).getImagePath()));
+                text2.setText(cursor.get(symbolList2.get(1)).getName());
+                image_2.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(1)).getImagePath()));
+                text3.setText(cursor.get(symbolList2.get(2)).getName());
+                image_3.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(2)).getImagePath()));
+                text4.setText(cursor.get(symbolList2.get(3)).getName());
+                image_4.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(3)).getImagePath()));
+                text5.setText(cursor.get(symbolList2.get(4)).getName());
+                image_5.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(4)).getImagePath()));
+                text6.setText(cursor.get(symbolList2.get(5)).getName());
+                image_6.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(5)).getImagePath()));
+                text7.setText(cursor.get(symbolList2.get(6)).getName());
+                image_7.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(6)).getImagePath()));
+                text8.setText(cursor.get(symbolList2.get(7)).getName());
+                image_8.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(7)).getImagePath()));
+                text9.setText(cursor.get(symbolList2.get(8)).getName());
+                image_9.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(8)).getImagePath()));
+                text10.setText(cursor.get(symbolList2.get(9)).getName());
+                image_10.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(9)).getImagePath()));
+                text11.setText(cursor.get(symbolList2.get(10)).getName());
+                image_11.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(10)).getImagePath()));
+                text12.setText(cursor.get(symbolList2.get(11)).getName());
+                image_12.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(11)).getImagePath()));
+                text13.setText(cursor.get(symbolList2.get(12)).getName());
+                image_13.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(12)).getImagePath()));
+                text14.setText(cursor.get(symbolList2.get(13)).getName());
+                image_14.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(13)).getImagePath()));
+                text15.setText(cursor.get(symbolList2.get(14)).getName());
+                image_15.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(14)).getImagePath()));
+                text16.setText(cursor.get(symbolList2.get(15)).getName());
+                image_16.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(15)).getImagePath()));
 
                 layout_1.setBackgroundColor(Color.WHITE);
                 layout_2.setBackgroundColor(Color.WHITE);
@@ -874,43 +800,39 @@ public class CommunicationPlate extends AppCompatActivity {
                 }
 
                 //각 버튼에 해당하는 테이블의 symbol을 불러와서 출력하는 기능
-                DBQuery dbQuery = new DBQuery(dbManager);
-                ArrayList<Integer> symbolList = new ArrayList<Integer>();
-                ArrayList<SymbolListItem> cursor = new ArrayList<>();
-                symbolList = dbQuery.getTableSymbol("도움");  //일상 테이블의 상징id 저장
-                cursor = dbQuery.getAllSymbol(); //모든 심볼 불러옴
-                text1.setText(cursor.get(symbolList.get(0)).getName());
-                image_1.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(0)).getImagePath()));
-                text2.setText(cursor.get(symbolList.get(1)).getName());
-                image_2.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(1)).getImagePath()));
-                text3.setText(cursor.get(symbolList.get(2)).getName());
-                image_3.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(2)).getImagePath()));
-                text4.setText(cursor.get(symbolList.get(3)).getName());
-                image_4.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(3)).getImagePath()));
-                text5.setText(cursor.get(symbolList.get(4)).getName());
-                image_5.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(4)).getImagePath()));
-                text6.setText(cursor.get(symbolList.get(5)).getName());
-                image_6.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(5)).getImagePath()));
-                text7.setText(cursor.get(symbolList.get(6)).getName());
-                image_7.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(6)).getImagePath()));
-                text8.setText(cursor.get(symbolList.get(7)).getName());
-                image_8.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(7)).getImagePath()));
-                text9.setText(cursor.get(symbolList.get(8)).getName());
-                image_9.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(8)).getImagePath()));
-                text10.setText(cursor.get(symbolList.get(9)).getName());
-                image_10.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(9)).getImagePath()));
-                text11.setText(cursor.get(symbolList.get(10)).getName());
-                image_11.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(10)).getImagePath()));
-                text12.setText(cursor.get(symbolList.get(11)).getName());
-                image_12.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(11)).getImagePath()));
-                text13.setText(cursor.get(symbolList.get(12)).getName());
-                image_13.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(12)).getImagePath()));
-                text14.setText(cursor.get(symbolList.get(13)).getName());
-                image_14.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(13)).getImagePath()));
-                text15.setText(cursor.get(symbolList.get(14)).getName());
-                image_15.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(14)).getImagePath()));
-                text16.setText(cursor.get(symbolList.get(15)).getName());
-                image_16.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList.get(15)).getImagePath()));
+
+                text1.setText(cursor.get(symbolList3.get(0)).getName());
+                image_1.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(0)).getImagePath()));
+                text2.setText(cursor.get(symbolList3.get(1)).getName());
+                image_2.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(1)).getImagePath()));
+                text3.setText(cursor.get(symbolList3.get(2)).getName());
+                image_3.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(2)).getImagePath()));
+                text4.setText(cursor.get(symbolList3.get(3)).getName());
+                image_4.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(3)).getImagePath()));
+                text5.setText(cursor.get(symbolList3.get(4)).getName());
+                image_5.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(4)).getImagePath()));
+                text6.setText(cursor.get(symbolList3.get(5)).getName());
+                image_6.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(5)).getImagePath()));
+                text7.setText(cursor.get(symbolList3.get(6)).getName());
+                image_7.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(6)).getImagePath()));
+                text8.setText(cursor.get(symbolList3.get(7)).getName());
+                image_8.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(7)).getImagePath()));
+                text9.setText(cursor.get(symbolList3.get(8)).getName());
+                image_9.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(8)).getImagePath()));
+                text10.setText(cursor.get(symbolList3.get(9)).getName());
+                image_10.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(9)).getImagePath()));
+                text11.setText(cursor.get(symbolList3.get(10)).getName());
+                image_11.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(10)).getImagePath()));
+                text12.setText(cursor.get(symbolList3.get(11)).getName());
+                image_12.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(11)).getImagePath()));
+                text13.setText(cursor.get(symbolList3.get(12)).getName());
+                image_13.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(12)).getImagePath()));
+                text14.setText(cursor.get(symbolList3.get(13)).getName());
+                image_14.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(13)).getImagePath()));
+                text15.setText(cursor.get(symbolList3.get(14)).getName());
+                image_15.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(14)).getImagePath()));
+                text16.setText(cursor.get(symbolList3.get(15)).getName());
+                image_16.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(15)).getImagePath()));
 
 
                 layout_1.setBackgroundColor(Color.WHITE);
@@ -932,68 +854,9 @@ public class CommunicationPlate extends AppCompatActivity {
             }
         });
 
-        image_a = (ImageView)findViewById(R.id.image_a);
-        image_b = (ImageView)findViewById(R.id.image_b);
-        image_c = (ImageView)findViewById(R.id.image_c);
-        image_d = (ImageView)findViewById(R.id.image_d);
-        image_1 = (ImageView)findViewById(R.id.image_1);
-        image_2 = (ImageView)findViewById(R.id.image_2);
-        image_3 = (ImageView)findViewById(R.id.image_3);
-        image_4 = (ImageView)findViewById(R.id.image_4);
-        image_5 = (ImageView)findViewById(R.id.image_5);
-        image_6 = (ImageView)findViewById(R.id.image_6);
-        image_7 = (ImageView)findViewById(R.id.image_7);
-        image_8 = (ImageView)findViewById(R.id.image_8);
-        image_9 = (ImageView)findViewById(R.id.image_9);
-        image_10 = (ImageView)findViewById(R.id.image_10);
-        image_11 = (ImageView)findViewById(R.id.image_11);
-        image_12 = (ImageView)findViewById(R.id.image_12);
-        image_13 = (ImageView)findViewById(R.id.image_13);
-        image_14 = (ImageView)findViewById(R.id.image_14);
-        image_15 = (ImageView)findViewById(R.id.image_15);
-        image_16 = (ImageView)findViewById(R.id.image_16);
 
-        layout_a = (LinearLayout)findViewById(R.id.layout_a);
-        layout_b = (LinearLayout)findViewById(R.id.layout_b);
-        layout_c = (LinearLayout)findViewById(R.id.layout_c);
-        layout_d = (LinearLayout)findViewById(R.id.layout_d);
-        layout_1 = (LinearLayout)findViewById(R.id.layout_1);
-        layout_2 = (LinearLayout)findViewById(R.id.layout_2);
-        layout_3 = (LinearLayout)findViewById(R.id.layout_3);
-        layout_4 = (LinearLayout)findViewById(R.id.layout_4);
-        layout_5 = (LinearLayout)findViewById(R.id.layout_5);
-        layout_6 = (LinearLayout)findViewById(R.id.layout_6);
-        layout_7 = (LinearLayout)findViewById(R.id.layout_7);
-        layout_8 = (LinearLayout)findViewById(R.id.layout_8);
-        layout_9 = (LinearLayout)findViewById(R.id.layout_9);
-        layout_10 = (LinearLayout)findViewById(R.id.layout_10);
-        layout_11 = (LinearLayout)findViewById(R.id.layout_11);
-        layout_12 = (LinearLayout)findViewById(R.id.layout_12);
-        layout_13 = (LinearLayout)findViewById(R.id.layout_13);
-        layout_14 = (LinearLayout)findViewById(R.id.layout_14);
-        layout_15 = (LinearLayout)findViewById(R.id.layout_15);
-        layout_16 = (LinearLayout)findViewById(R.id.layout_16);
 
-        text1 = (TextView)findViewById(R.id.text1);
-        text2 = (TextView)findViewById(R.id.text2);
-        text3 = (TextView)findViewById(R.id.text3);
-        text4 = (TextView)findViewById(R.id.text4);
-        text5 = (TextView)findViewById(R.id.text5);
-        text6 = (TextView)findViewById(R.id.text6);
-        text7 = (TextView)findViewById(R.id.text7);
-        text8 = (TextView)findViewById(R.id.text8);
-        text9 = (TextView)findViewById(R.id.text9);
-        text10 = (TextView)findViewById(R.id.text10);
-        text11 = (TextView)findViewById(R.id.text11);
-        text12 = (TextView)findViewById(R.id.text12);
-        text13 = (TextView)findViewById(R.id.text13);
-        text14 = (TextView)findViewById(R.id.text14);
-        text15 = (TextView)findViewById(R.id.text15);
-        text16 = (TextView)findViewById(R.id.text16);
-        texta = (TextView)findViewById(R.id.texta);
-        textb = (TextView)findViewById(R.id.textb);
-        textc = (TextView)findViewById(R.id.textc);
-        textd = (TextView)findViewById(R.id.textd);
+
 
         layout_a.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1244,11 +1107,6 @@ public class CommunicationPlate extends AppCompatActivity {
                 layout_15.setBackgroundColor(Color.WHITE);
                 layout_16.setBackgroundColor(Color.WHITE);
 
-                if(num==0) {
-                    layout_2.setBackgroundColor(Color.RED);
-                    layout_6.setBackgroundColor(Color.YELLOW);
-                    layout_10.setBackgroundColor(Color.GREEN);
-                }
             }
         });
 
@@ -1314,11 +1172,7 @@ public class CommunicationPlate extends AppCompatActivity {
                 layout_14.setBackgroundColor(Color.WHITE);
                 layout_15.setBackgroundColor(Color.WHITE);
                 layout_16.setBackgroundColor(Color.WHITE);
-                if(num==0) {
-                    layout_8.setBackgroundColor(Color.RED);
-                    layout_4.setBackgroundColor(Color.YELLOW);
-                    layout_12.setBackgroundColor(Color.GREEN);
-                }
+
             }
         });
 
@@ -1384,11 +1238,7 @@ public class CommunicationPlate extends AppCompatActivity {
                 layout_14.setBackgroundColor(Color.WHITE);
                 layout_15.setBackgroundColor(Color.WHITE);
                 layout_16.setBackgroundColor(Color.WHITE);
-                if(num==0) {
-                    layout_5.setBackgroundColor(Color.RED);
-                    layout_9.setBackgroundColor(Color.YELLOW);
-                    layout_1.setBackgroundColor(Color.GREEN);
-                }
+
             }
         });
 
@@ -1454,11 +1304,7 @@ public class CommunicationPlate extends AppCompatActivity {
                 layout_14.setBackgroundColor(Color.WHITE);
                 layout_15.setBackgroundColor(Color.WHITE);
                 layout_16.setBackgroundColor(Color.WHITE);
-                if(num==0) {
-                    layout_12.setBackgroundColor(Color.RED);
-                    layout_7.setBackgroundColor(Color.YELLOW);
-                    layout_15.setBackgroundColor(Color.GREEN);
-                }
+
             }
         });
 
@@ -1524,11 +1370,7 @@ public class CommunicationPlate extends AppCompatActivity {
                 layout_14.setBackgroundColor(Color.WHITE);
                 layout_15.setBackgroundColor(Color.WHITE);
                 layout_16.setBackgroundColor(Color.WHITE);
-                if(num==0) {
-                    layout_8.setBackgroundColor(Color.RED);
-                    layout_3.setBackgroundColor(Color.YELLOW);
-                    layout_14.setBackgroundColor(Color.GREEN);
-                }
+
             }
         });
 
@@ -1594,11 +1436,7 @@ public class CommunicationPlate extends AppCompatActivity {
                 layout_14.setBackgroundColor(Color.WHITE);
                 layout_15.setBackgroundColor(Color.WHITE);
                 layout_16.setBackgroundColor(Color.WHITE);
-                if(num==0) {
-                    layout_5.setBackgroundColor(Color.RED);
-                    layout_8.setBackgroundColor(Color.YELLOW);
-                    layout_4.setBackgroundColor(Color.GREEN);
-                }
+
             }
         });
 
@@ -1664,11 +1502,7 @@ public class CommunicationPlate extends AppCompatActivity {
                 layout_14.setBackgroundColor(Color.WHITE);
                 layout_15.setBackgroundColor(Color.WHITE);
                 layout_16.setBackgroundColor(Color.WHITE);
-                if(num==0) {
-                    layout_12.setBackgroundColor(Color.RED);
-                    layout_16.setBackgroundColor(Color.YELLOW);
-                    layout_4.setBackgroundColor(Color.GREEN);
-                }
+
             }
         });
 
@@ -1734,11 +1568,7 @@ public class CommunicationPlate extends AppCompatActivity {
                 layout_14.setBackgroundColor(Color.WHITE);
                 layout_15.setBackgroundColor(Color.WHITE);
                 layout_16.setBackgroundColor(Color.WHITE);
-                if(num==0) {
-                    layout_3.setBackgroundColor(Color.RED);
-                    layout_13.setBackgroundColor(Color.YELLOW);
-                    layout_9.setBackgroundColor(Color.GREEN);
-                }
+
             }
         });
 
@@ -1804,11 +1634,7 @@ public class CommunicationPlate extends AppCompatActivity {
                 layout_14.setBackgroundColor(Color.WHITE);
                 layout_15.setBackgroundColor(Color.WHITE);
                 layout_16.setBackgroundColor(Color.WHITE);
-                if(num==0) {
-                    layout_6.setBackgroundColor(Color.RED);
-                    layout_12.setBackgroundColor(Color.YELLOW);
-                    layout_5.setBackgroundColor(Color.GREEN);
-                }
+
             }
         });
 
@@ -1874,11 +1700,7 @@ public class CommunicationPlate extends AppCompatActivity {
                 layout_14.setBackgroundColor(Color.WHITE);
                 layout_15.setBackgroundColor(Color.WHITE);
                 layout_16.setBackgroundColor(Color.WHITE);
-                if(num==0) {
-                    layout_3.setBackgroundColor(Color.RED);
-                    layout_1.setBackgroundColor(Color.YELLOW);
-                    layout_11.setBackgroundColor(Color.GREEN);
-                }
+
             }
         });
 
@@ -1944,11 +1766,7 @@ public class CommunicationPlate extends AppCompatActivity {
                 layout_14.setBackgroundColor(Color.WHITE);
                 layout_15.setBackgroundColor(Color.WHITE);
                 layout_16.setBackgroundColor(Color.WHITE);
-                if(num==0) {
-                    layout_1.setBackgroundColor(Color.RED);
-                    layout_6.setBackgroundColor(Color.YELLOW);
-                    layout_12.setBackgroundColor(Color.GREEN);
-                }
+
             }
         });
 
@@ -2014,11 +1832,7 @@ public class CommunicationPlate extends AppCompatActivity {
                 layout_14.setBackgroundColor(Color.WHITE);
                 layout_15.setBackgroundColor(Color.WHITE);
                 layout_16.setBackgroundColor(Color.WHITE);
-                if(num==0) {
-                    layout_2.setBackgroundColor(Color.RED);
-                    layout_7.setBackgroundColor(Color.YELLOW);
-                    layout_13.setBackgroundColor(Color.GREEN);
-                }
+
             }
         });
 
@@ -2084,11 +1898,7 @@ public class CommunicationPlate extends AppCompatActivity {
                 layout_14.setBackgroundColor(Color.WHITE);
                 layout_15.setBackgroundColor(Color.WHITE);
                 layout_16.setBackgroundColor(Color.WHITE);
-                if(num==0) {
-                    layout_3.setBackgroundColor(Color.RED);
-                    layout_8.setBackgroundColor(Color.YELLOW);
-                    layout_14.setBackgroundColor(Color.GREEN);
-                }
+
             }
         });
 
@@ -2154,11 +1964,7 @@ public class CommunicationPlate extends AppCompatActivity {
                 layout_14.setBackgroundColor(Color.WHITE);
                 layout_15.setBackgroundColor(Color.WHITE);
                 layout_16.setBackgroundColor(Color.WHITE);
-                if(num==0) {
-                    layout_4.setBackgroundColor(Color.RED);
-                    layout_9.setBackgroundColor(Color.YELLOW);
-                    layout_15.setBackgroundColor(Color.GREEN);
-                }
+
             }
         });
 
@@ -2224,11 +2030,7 @@ public class CommunicationPlate extends AppCompatActivity {
                 layout_14.setBackgroundColor(Color.WHITE);
                 layout_15.setBackgroundColor(Color.WHITE);
                 layout_16.setBackgroundColor(Color.WHITE);
-                if(num==0) {
-                    layout_5.setBackgroundColor(Color.RED);
-                    layout_10.setBackgroundColor(Color.YELLOW);
-                    layout_16.setBackgroundColor(Color.GREEN);
-                }
+
             }
         });
 
@@ -2294,11 +2096,7 @@ public class CommunicationPlate extends AppCompatActivity {
                 layout_14.setBackgroundColor(Color.WHITE);
                 layout_15.setBackgroundColor(Color.WHITE);
                 layout_16.setBackgroundColor(Color.WHITE);
-                if(num==0) {
-                    layout_6.setBackgroundColor(Color.RED);
-                    layout_11.setBackgroundColor(Color.YELLOW);
-                    layout_1.setBackgroundColor(Color.GREEN);
-                }
+
             }
         });
     }
