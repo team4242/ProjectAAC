@@ -39,6 +39,7 @@ public class DBQuery {
         cursor.close();         //커서 사용 후 꼭 닫아줍시다.
         return symbolName;
     }
+
     //상징 테이블 전체 ArrayList로 반환하는 메소드
     public ArrayList<SymbolListItem> getAllSymbol(){
         database = dbManager.getWritableDatabase();
@@ -80,6 +81,7 @@ public class DBQuery {
         symbolId.close();
         return symbolIdList;
     }
+
 
 
     //추가

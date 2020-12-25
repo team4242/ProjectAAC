@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -39,6 +41,7 @@ public class CommunicationPlate extends AppCompatActivity {
     TextView texta,textb,textc,textd,text1,text2,text3,text4,text5,text6,text7,text8,text9,text10,text11,text12,text13,text14,text15,text16;
     ArrayList<SymbolListItem> cursor;
     ArrayList<Integer> symbolList1, symbolList2, symbolList3;
+    ArrayList<Drawable> draw1, draw2, draw3;
     DBManager dbManager;
 
 
@@ -49,6 +52,22 @@ public class CommunicationPlate extends AppCompatActivity {
         setContentView(R.layout.activity_communication_plate);
 
 
+        dbManager = new DBManager(this);
+        DBQuery dbQuery = new DBQuery(dbManager);
+
+        symbolList1 = dbQuery.getTableSymbol("일상");  //일상 테이블의 상징id 저장
+        symbolList2 = dbQuery.getTableSymbol("음식");  //일상 테이블의 상징id 저장
+        symbolList3 = dbQuery.getTableSymbol("도움");  //일상 테이블의 상징id 저장
+        cursor = dbQuery.getAllSymbol(); //모든 심볼 불러옴
+
+        draw1 = new ArrayList<>();
+        draw2 = new ArrayList<>();
+        draw3 = new ArrayList<>();
+        for(int i=0; i<16; i++) {
+            draw1.add(Drawable.createFromPath(cursor.get(symbolList1.get(i)).getImagePath()));
+            draw2.add(Drawable.createFromPath(cursor.get(symbolList2.get(i)).getImagePath()));
+            draw3.add(Drawable.createFromPath(cursor.get(symbolList3.get(i)).getImagePath()));
+        }
 
         tts = new TextToSpeech(CommunicationPlate.this, new TextToSpeech.OnInitListener() {
             @Override
@@ -237,13 +256,7 @@ public class CommunicationPlate extends AppCompatActivity {
             }
         });
 
-        dbManager = new DBManager(this);
-        DBQuery dbQuery = new DBQuery(dbManager);
 
-        symbolList1 = dbQuery.getTableSymbol("일상");  //일상 테이블의 상징id 저장
-        symbolList2 = dbQuery.getTableSymbol("음식");  //일상 테이블의 상징id 저장
-        symbolList3 = dbQuery.getTableSymbol("도움");  //일상 테이블의 상징id 저장
-        cursor = dbQuery.getAllSymbol(); //모든 심볼 불러옴
 
         texta = (TextView)findViewById(R.id.texta);
         textb = (TextView)findViewById(R.id.textb);
@@ -386,37 +399,37 @@ public class CommunicationPlate extends AppCompatActivity {
 
 
         text1.setText(cursor.get(symbolList1.get(0)).getName());
-        image_1.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(0)).getImagePath()));
+        image_1.setImageDrawable(draw1.get(0));
         text2.setText(cursor.get(symbolList1.get(1)).getName());
-        image_2.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(1)).getImagePath()));
+        image_2.setImageDrawable(draw1.get(1));
         text3.setText(cursor.get(symbolList1.get(2)).getName());
-        image_3.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(2)).getImagePath()));
+        image_3.setImageDrawable(draw1.get(2));
         text4.setText(cursor.get(symbolList1.get(3)).getName());
-        image_4.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(3)).getImagePath()));
+        image_4.setImageDrawable(draw1.get(3));
         text5.setText(cursor.get(symbolList1.get(4)).getName());
-        image_5.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(4)).getImagePath()));
+        image_5.setImageDrawable(draw1.get(4));
         text6.setText(cursor.get(symbolList1.get(5)).getName());
-        image_6.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(5)).getImagePath()));
+        image_6.setImageDrawable(draw1.get(5));
         text7.setText(cursor.get(symbolList1.get(6)).getName());
-        image_7.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(6)).getImagePath()));
+        image_7.setImageDrawable(draw1.get(6));
         text8.setText(cursor.get(symbolList1.get(7)).getName());
-        image_8.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(7)).getImagePath()));
+        image_8.setImageDrawable(draw1.get(7));
         text9.setText(cursor.get(symbolList1.get(8)).getName());
-        image_9.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(8)).getImagePath()));
+        image_9.setImageDrawable(draw1.get(8));
         text10.setText(cursor.get(symbolList1.get(9)).getName());
-        image_10.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(9)).getImagePath()));
+        image_10.setImageDrawable(draw1.get(9));
         text11.setText(cursor.get(symbolList1.get(10)).getName());
-        image_11.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(10)).getImagePath()));
+        image_11.setImageDrawable(draw1.get(10));
         text12.setText(cursor.get(symbolList1.get(11)).getName());
-        image_12.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(11)).getImagePath()));
+        image_12.setImageDrawable(draw1.get(11));
         text13.setText(cursor.get(symbolList1.get(12)).getName());
-        image_13.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(12)).getImagePath()));
+        image_13.setImageDrawable(draw1.get(12));
         text14.setText(cursor.get(symbolList1.get(13)).getName());
-        image_14.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(13)).getImagePath()));
+        image_14.setImageDrawable(draw1.get(13));
         text15.setText(cursor.get(symbolList1.get(14)).getName());
-        image_15.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(14)).getImagePath()));
+        image_15.setImageDrawable(draw1.get(14));
         text16.setText(cursor.get(symbolList1.get(15)).getName());
-        image_16.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(15)).getImagePath()));
+        image_16.setImageDrawable(draw1.get(15));
 
 
         layout_1.setBackgroundColor(Color.WHITE);
@@ -525,37 +538,37 @@ public class CommunicationPlate extends AppCompatActivity {
 
 
                 text1.setText(cursor.get(symbolList1.get(0)).getName());
-                image_1.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(0)).getImagePath()));
+                image_1.setImageDrawable(draw1.get(0));
                 text2.setText(cursor.get(symbolList1.get(1)).getName());
-                image_2.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(1)).getImagePath()));
+                image_2.setImageDrawable(draw1.get(1));
                 text3.setText(cursor.get(symbolList1.get(2)).getName());
-                image_3.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(2)).getImagePath()));
+                image_3.setImageDrawable(draw1.get(2));
                 text4.setText(cursor.get(symbolList1.get(3)).getName());
-                image_4.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(3)).getImagePath()));
+                image_4.setImageDrawable(draw1.get(3));
                 text5.setText(cursor.get(symbolList1.get(4)).getName());
-                image_5.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(4)).getImagePath()));
+                image_5.setImageDrawable(draw1.get(4));
                 text6.setText(cursor.get(symbolList1.get(5)).getName());
-                image_6.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(5)).getImagePath()));
+                image_6.setImageDrawable(draw1.get(5));
                 text7.setText(cursor.get(symbolList1.get(6)).getName());
-                image_7.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(6)).getImagePath()));
+                image_7.setImageDrawable(draw1.get(6));
                 text8.setText(cursor.get(symbolList1.get(7)).getName());
-                image_8.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(7)).getImagePath()));
+                image_8.setImageDrawable(draw1.get(7));
                 text9.setText(cursor.get(symbolList1.get(8)).getName());
-                image_9.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(8)).getImagePath()));
+                image_9.setImageDrawable(draw1.get(8));
                 text10.setText(cursor.get(symbolList1.get(9)).getName());
-                image_10.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(9)).getImagePath()));
+                image_10.setImageDrawable(draw1.get(9));
                 text11.setText(cursor.get(symbolList1.get(10)).getName());
-                image_11.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(10)).getImagePath()));
+                image_11.setImageDrawable(draw1.get(10));
                 text12.setText(cursor.get(symbolList1.get(11)).getName());
-                image_12.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(11)).getImagePath()));
+                image_12.setImageDrawable(draw1.get(11));
                 text13.setText(cursor.get(symbolList1.get(12)).getName());
-                image_13.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(12)).getImagePath()));
+                image_13.setImageDrawable(draw1.get(12));
                 text14.setText(cursor.get(symbolList1.get(13)).getName());
-                image_14.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(13)).getImagePath()));
+                image_14.setImageDrawable(draw1.get(13));
                 text15.setText(cursor.get(symbolList1.get(14)).getName());
-                image_15.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(14)).getImagePath()));
+                image_15.setImageDrawable(draw1.get(14));
                 text16.setText(cursor.get(symbolList1.get(15)).getName());
-                image_16.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList1.get(15)).getImagePath()));
+                image_16.setImageDrawable(draw1.get(15));
 
 
                 layout_1.setBackgroundColor(Color.WHITE);
@@ -664,37 +677,37 @@ public class CommunicationPlate extends AppCompatActivity {
 
 
                 text1.setText(cursor.get(symbolList2.get(0)).getName());
-                image_1.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(0)).getImagePath()));
+                image_1.setImageDrawable(draw2.get(0));
                 text2.setText(cursor.get(symbolList2.get(1)).getName());
-                image_2.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(1)).getImagePath()));
+                image_2.setImageDrawable(draw2.get(1));
                 text3.setText(cursor.get(symbolList2.get(2)).getName());
-                image_3.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(2)).getImagePath()));
+                image_3.setImageDrawable(draw2.get(2));
                 text4.setText(cursor.get(symbolList2.get(3)).getName());
-                image_4.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(3)).getImagePath()));
+                image_4.setImageDrawable(draw2.get(3));
                 text5.setText(cursor.get(symbolList2.get(4)).getName());
-                image_5.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(4)).getImagePath()));
+                image_5.setImageDrawable(draw2.get(4));
                 text6.setText(cursor.get(symbolList2.get(5)).getName());
-                image_6.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(5)).getImagePath()));
+                image_6.setImageDrawable(draw2.get(5));
                 text7.setText(cursor.get(symbolList2.get(6)).getName());
-                image_7.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(6)).getImagePath()));
+                image_7.setImageDrawable(draw2.get(6));
                 text8.setText(cursor.get(symbolList2.get(7)).getName());
-                image_8.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(7)).getImagePath()));
+                image_8.setImageDrawable(draw2.get(7));
                 text9.setText(cursor.get(symbolList2.get(8)).getName());
-                image_9.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(8)).getImagePath()));
+                image_9.setImageDrawable(draw2.get(8));
                 text10.setText(cursor.get(symbolList2.get(9)).getName());
-                image_10.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(9)).getImagePath()));
+                image_10.setImageDrawable(draw2.get(9));
                 text11.setText(cursor.get(symbolList2.get(10)).getName());
-                image_11.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(10)).getImagePath()));
+                image_11.setImageDrawable(draw2.get(10));
                 text12.setText(cursor.get(symbolList2.get(11)).getName());
-                image_12.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(11)).getImagePath()));
+                image_12.setImageDrawable(draw2.get(11));
                 text13.setText(cursor.get(symbolList2.get(12)).getName());
-                image_13.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(12)).getImagePath()));
+                image_13.setImageDrawable(draw2.get(12));
                 text14.setText(cursor.get(symbolList2.get(13)).getName());
-                image_14.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(13)).getImagePath()));
+                image_14.setImageDrawable(draw2.get(13));
                 text15.setText(cursor.get(symbolList2.get(14)).getName());
-                image_15.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(14)).getImagePath()));
+                image_15.setImageDrawable(draw2.get(14));
                 text16.setText(cursor.get(symbolList2.get(15)).getName());
-                image_16.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList2.get(15)).getImagePath()));
+                image_16.setImageDrawable(draw2.get(15));
 
                 layout_1.setBackgroundColor(Color.WHITE);
                 layout_2.setBackgroundColor(Color.WHITE);
@@ -802,37 +815,37 @@ public class CommunicationPlate extends AppCompatActivity {
                 //각 버튼에 해당하는 테이블의 symbol을 불러와서 출력하는 기능
 
                 text1.setText(cursor.get(symbolList3.get(0)).getName());
-                image_1.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(0)).getImagePath()));
+                image_1.setImageDrawable(draw3.get(0));
                 text2.setText(cursor.get(symbolList3.get(1)).getName());
-                image_2.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(1)).getImagePath()));
+                image_2.setImageDrawable(draw3.get(1));
                 text3.setText(cursor.get(symbolList3.get(2)).getName());
-                image_3.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(2)).getImagePath()));
+                image_3.setImageDrawable(draw3.get(2));
                 text4.setText(cursor.get(symbolList3.get(3)).getName());
-                image_4.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(3)).getImagePath()));
+                image_4.setImageDrawable(draw3.get(3));
                 text5.setText(cursor.get(symbolList3.get(4)).getName());
-                image_5.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(4)).getImagePath()));
+                image_5.setImageDrawable(draw3.get(4));
                 text6.setText(cursor.get(symbolList3.get(5)).getName());
-                image_6.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(5)).getImagePath()));
+                image_6.setImageDrawable(draw3.get(5));
                 text7.setText(cursor.get(symbolList3.get(6)).getName());
-                image_7.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(6)).getImagePath()));
+                image_7.setImageDrawable(draw3.get(6));
                 text8.setText(cursor.get(symbolList3.get(7)).getName());
-                image_8.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(7)).getImagePath()));
+                image_8.setImageDrawable(draw3.get(7));
                 text9.setText(cursor.get(symbolList3.get(8)).getName());
-                image_9.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(8)).getImagePath()));
+                image_9.setImageDrawable(draw3.get(8));
                 text10.setText(cursor.get(symbolList3.get(9)).getName());
-                image_10.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(9)).getImagePath()));
+                image_10.setImageDrawable(draw3.get(9));
                 text11.setText(cursor.get(symbolList3.get(10)).getName());
-                image_11.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(10)).getImagePath()));
+                image_11.setImageDrawable(draw3.get(10));
                 text12.setText(cursor.get(symbolList3.get(11)).getName());
-                image_12.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(11)).getImagePath()));
+                image_12.setImageDrawable(draw3.get(11));
                 text13.setText(cursor.get(symbolList3.get(12)).getName());
-                image_13.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(12)).getImagePath()));
+                image_13.setImageDrawable(draw3.get(12));
                 text14.setText(cursor.get(symbolList3.get(13)).getName());
-                image_14.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(13)).getImagePath()));
+                image_14.setImageDrawable(draw3.get(13));
                 text15.setText(cursor.get(symbolList3.get(14)).getName());
-                image_15.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(14)).getImagePath()));
+                image_15.setImageDrawable(draw3.get(14));
                 text16.setText(cursor.get(symbolList3.get(15)).getName());
-                image_16.setImageDrawable(Drawable.createFromPath(cursor.get(symbolList3.get(15)).getImagePath()));
+                image_16.setImageDrawable(draw3.get(15));
 
 
                 layout_1.setBackgroundColor(Color.WHITE);
