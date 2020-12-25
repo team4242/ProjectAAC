@@ -1,8 +1,6 @@
 package com.example.projectaac;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 
@@ -63,9 +64,10 @@ public class GridSymbolAdapter extends BaseAdapter {
         ImageView imageView = convertView.findViewById(R.id.symbolImage);
         TextView nameView = convertView.findViewById(R.id.symbolName);
 
-        Bitmap imgBitmap = BitmapFactory.decodeFile(listItem.getImagePath());
-        imageView.setImageBitmap(imgBitmap);
+        //Bitmap imgBitmap = BitmapFactory.decodeFile(listItem.getImagePath());
+        //imageView.setImageBitmap(imgBitmap);
         nameView.setText(listItem.getName());
+        Glide.with(context).load(listItem.getImagePath()).into(imageView);
 
         //adapter의 원소를 클릭하면 배경색깔 초록색으로, 초록색을 다시 클릭하면 흰색으로,
         // 다른 원소를 클릭하면 기존원소는 흰색, 클릭한 원소는 초록색

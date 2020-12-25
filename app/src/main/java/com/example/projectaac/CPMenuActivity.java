@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 public class CPMenuActivity extends AppCompatActivity {
-    Button btn_symbolmake, btn_camera, btn_community, btn_save, btn_cpChange;
+    Button btn_symbolmake, btn_cpChange;
     ImageButton btn_home;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +19,6 @@ public class CPMenuActivity extends AppCompatActivity {
 
         btn_cpChange = (Button)findViewById(R.id.btn_CPchange);
         btn_symbolmake = (Button)findViewById(R.id.btn_symbolmake);
-        btn_camera= (Button)findViewById(R.id.btn_camera);
-        btn_community= (Button)findViewById(R.id.btn_community);
-        btn_save= (Button)findViewById(R.id.btn_save);
 
         btn_cpChange.setOnClickListener(new View.OnClickListener() {
             @Override
